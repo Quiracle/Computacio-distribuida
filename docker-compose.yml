@@ -8,8 +8,9 @@ services:
       - 8883:8883
       - 9001:9001
     volumes:
-      - ./mosquitto.conf:/etc/mosquitto/mosquitto.conf
-      - ./conf.d:/mosquitto/conf.d
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
     networks:
       - mosquitto
 
