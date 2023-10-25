@@ -1,8 +1,21 @@
 version: "3.7"
 
 services:
+  mosquitto:
+    image: iegomez/mosquitto-go-auth
+    ports:
+      - 1883:1883
+      - 8883:8883
+      - 9001:9001
+    volumes:
+      - ./mosquitto.conf:/etc/mosquitto/mosquitto.conf
+      - ./conf.d:/mosquitto/conf.d
+    networks:
+      - mosquitto
+
   db:
     container_name: mongo-dev
+    restart: always
     image: mongo:4.2
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
@@ -35,4 +48,8 @@ services:
 
 networks:
   mongo-compose-network:
+    driver: bridge
+
+  mosquitto:
+    name: mosquitto
     driver: bridge
