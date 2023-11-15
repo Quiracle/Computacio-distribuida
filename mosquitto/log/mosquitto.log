@@ -1,0 +1,36 @@
+1700061884: mosquitto version 2.0.18 starting
+1700061884: Config loaded from /mosquitto/config/mosquitto.conf.
+1700061884: Opening ipv4 listen socket on port 1883.
+1700061884: mosquitto version 2.0.18 running
+1700061974: mosquitto version 2.0.18 terminating
+1700061974: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1700061975: mosquitto version 2.0.18 starting
+1700061975: Config loaded from /mosquitto/config/mosquitto.conf.
+1700061975: Opening ipv4 listen socket on port 1883.
+1700061975: mosquitto version 2.0.18 running
+1700062123: mosquitto version 2.0.18 terminating
+1700062123: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1700062132: mosquitto version 2.0.18 starting
+1700062132: Config loaded from /mosquitto/config/mosquitto.conf.
+1700062132: Opening ipv4 listen socket on port 1883.
+1700062132: mosquitto version 2.0.18 running
+1700062140: New connection from 172.30.0.1:48874 on port 1883.
+1700062140: Client <unknown> disconnected due to protocol error.
+1700062140: New connection from 172.30.0.1:48876 on port 1883.
+1700062140: Client <unknown> disconnected due to protocol error.
+1700062140: New connection from 172.30.0.1:48878 on port 1883.
+1700062140: Client <unknown> disconnected due to protocol error.
+1700062140: New connection from 172.30.0.1:48880 on port 1883.
+1700062140: Client <unknown> disconnected due to protocol error.
+1700062140: New connection from 172.30.0.1:48882 on port 1883.
+1700062140: Client <unknown> disconnected due to protocol error.
+1700062140: New connection from 172.30.0.1:48884 on port 1883.
+1700062140: Client <unknown> disconnected due to protocol error.
+1700062140: New connection from 172.30.0.1:48886 on port 1883.
+1700062140: Client <unknown> disconnected due to protocol error.
+1700062140: New connection from 172.30.0.1:48888 on port 1883.
+1700062140: Client <unknown> disconnected due to protocol error.
+1700062140: New connection from 172.30.0.1:48890 on port 1883.
+1700062140: Client <unknown> disconnected due to protocol error.
+1700062140: New connection from 172.30.0.1:48892 on port 1883.
+1700062140: Client <unknown> disconnected due to protocol error.

@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   mosquitto:
-    image: eclipse-mosquitto:2
+    image: eclipse-mosquitto:latest
     ports:
       - 1883:1883
       - 8883:8883
@@ -14,43 +14,21 @@ services:
     networks:
       - mosquitto
 
-  db:
-    container_name: mongo-dev
-    restart: always
-    image: mongo:4.2
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_DATABASE=auth
-      - MONGO_INITDB_ROOT_PASSWORD=pass
-    networks: 
-      - mongo-compose-network
+  influxdb:
+    container_name: influxdb
+    image: influxdb:latest
     ports:
-      - '27017:27017'
-    volumes: 
-      - ./data:/data/db
-  
-  mongo-express:
-    container_name: mongo-express
-    image: mongo-express
-    depends_on:
-      - db
-    networks: 
-      - mongo-compose-network
+      - "8086:8086"
     environment:
-      - ME_CONFIG_MONGODB_SERVER=mongo-dev
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=pass
-      - ME_CONFIG_BASICAUTH_USERNAME=admin
-      - ME_CONFIG_BASICAUTH_PASSWORD=tribes
-    ports:
-      - '8081:8081'
-    volumes: 
-      - ./data:/data/db      
+      - INFLUXDB_DB=influxdb
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=pass
+    volumes:
+      - ./data:/var/lib/influxdb
 
 networks:
   mongo-compose-network:
     driver: bridge
 
   mosquitto:
-    name: mosquitto
     driver: bridge
