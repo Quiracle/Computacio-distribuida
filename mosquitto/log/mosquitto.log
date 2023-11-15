@@ -34,3 +34,19 @@
 1700062140: Client <unknown> disconnected due to protocol error.
 1700062140: New connection from 172.30.0.1:48892 on port 1883.
 1700062140: Client <unknown> disconnected due to protocol error.
+1700066055: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1700066687: New connection from 172.30.0.1:48896 on port 1883.
+1700066687: New client connected from 172.30.0.1:48896 as python-mqtt-401-1 (p2, c1, k60, u'subscriber').
+1700066730: New connection from 172.30.0.1:48900 on port 1883.
+1700066730: New client connected from 172.30.0.1:48900 as python-mqtt-587 (p2, c1, k60, u'admin').
+1700066734: Client python-mqtt-401-1 closed its connection.
+1700066740: Client python-mqtt-587 closed its connection.
+1700066775: New connection from 172.30.0.1:48904 on port 1883.
+1700066775: New client connected from 172.30.0.1:48904 as python-mqtt-218-1 (p2, c1, k60, u'subscriber').
+1700066779: New connection from 172.30.0.1:48908 on port 1883.
+1700066779: New client connected from 172.30.0.1:48908 as python-mqtt-730 (p2, c1, k60, u'admin').
+1700066792: Client python-mqtt-730 closed its connection.
+1700066794: Client python-mqtt-218-1 closed its connection.
+1700067856: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1700068263: mosquitto version 2.0.18 terminating
+1700068263: Saving in-memory database to /mosquitto/data//mosquitto.db.
