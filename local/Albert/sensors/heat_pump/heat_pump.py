@@ -5,30 +5,25 @@ import json
 import random
 from datetime import datetime
 import pytz
+import os
 
-broker = 'localhost'
-port = 1883
-topic = "python/mqtt/corners"
+broker = os.environ.get('MQTT_BROKER', 'localhost')
+port = os.environ.get('MQTT_PORT', 1883)
+mqtt_topic = 'actuators/heat_pump'
 CLIENT_ID = f'python-mqtt-{random.randint(0, 1000)}'
 
-USERNAME = 'admin'
-PASSWORD = 'public'
+USERNAME = os.environ.get('MQTT_USERNAME', 'public')
+PASSWORD = os.environ.get('MQTT_PASSWORD', 'public')
 
 def connect_mqtt():
     def on_connect(client, userdata, flags, rc):
         if rc == 0:
-            print("Connected to MQTT Broker!")
+            logging.info("Connected to MQTT Broker!")
         else:
-            print("Failed to connect, return code %d\n", rc)
+            logging.error("Failed to connect, return code %d\n", rc)
     # Set Connecting Client ID
     client = mqtt_client.Client(CLIENT_ID)    
     client.username_pw_set(USERNAME, PASSWORD)
-
-    # Some security options, doesn't work
-    # client.tls_set(certfile=None,
-    #            keyfile=None,
-    #            cert_reqs=ssl.CERT_REQUIRED,
-    #            tls_version=ssl.PROTOCOL_TLSv1_2)
 
     client.on_connect = on_connect
     client.on_disconnect = on_disconnect
@@ -76,12 +71,8 @@ def publish(client):
         current_time = str(datetime.now(pytz.timezone("Europe/Gibraltar")).strftime("%Y-%m-%d %H:%M:%S"))
 
         msg_dict = {
-            'time': current_time,
-            'vehicle_id': random.randint(0,10),
-            'camera_id': f'S{random.randint(0,2)}',
-            'vehicle_type': random.choice(['car', 'truck']),
-            'street_id': random.choice(range(10)),
-            'street_event': random.choice(['enter', 'leave'])
+            "timestamp": current_time,
+            "value": random.randint(15,30),
         }
         
         if not client.is_connected():
@@ -90,19 +81,28 @@ def publish(client):
             continue
         time.sleep(1)
         msg = json.dumps(msg_dict)
-        result = client.publish(topic, msg)
+        result = client.publish(mqtt_topic, msg)
         # result: [0, 1]
         status = result[0]
         if status == 0:
-            print(f"Send `{msg}` to topic `{topic}`")
+            logging.info(f"Send `{msg}` to topic `{mqtt_topic}`")
         else:
-            print(f"Failed to send message to topic {topic}")
+            logging.error(f"Failed to send message to topic {mqtt_topic}")
         msg_count += 1
+
+def subscribe(client: mqtt_client):
+    def on_message(client, userdata, msg):
+        logging.info(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
+        msg = json.loads(str(msg.payload.decode("utf-8")))
+    client.subscribe(mqtt_topic)
+    client.on_message = on_message
+
 
 def run():
     logging.basicConfig(format='%(asctime)s - %(levelname)s: %(message)s',
                         level=logging.DEBUG)
     client = connect_mqtt()
+    subscribe(client)
     client.loop_start() 
     time.sleep(1)
     if client.is_connected():

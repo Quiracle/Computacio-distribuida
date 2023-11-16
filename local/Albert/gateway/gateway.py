@@ -6,8 +6,6 @@ import json
 import random
 import pytz
 
-VEHICLE_TYPES = ['car', 'truck']
-
 #Broker connection parameters
 broker = 'localhost'
 port = 1883
