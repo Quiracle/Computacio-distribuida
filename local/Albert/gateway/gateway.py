@@ -5,16 +5,27 @@ import time
 import json
 import random
 import pytz
+from confluent_kafka import Producer
 
-VEHICLE_TYPES = ['car', 'truck']
+# Connection settings
+FIRST_RECONNECT_DELAY = 1
+RECONNECT_RATE = 2
+MAX_RECONNECT_COUNT = 12
+MAX_RECONNECT_DELAY = 60
+FLAG_EXIT = False
 
-#Broker connection parameters
-broker = 'localhost'
-port = 1883
-topic = "python/mqtt/corners"
-CLIENT_ID = f'python-mqtt-{random.randint(0, 1000)}-1'
-USERNAME = 'subscriber'
-PASSWORD = 'public'
+# Configuración de MQTT
+broker_mqtt = 'localhost'
+port_mqtt = 1883
+topic_mqtt = "python/mqtt/corners"
+CLIENT_ID_MQTT = f'python-mqtt-{random.randint(0, 1000)}-1'
+USERNAME_MQTT = 'subscriber'
+PASSWORD_MQTT = 'public'
+
+# Configuración de Kafka
+broker_kafka = 'localhost:9092'  # Coloca la dirección de tus brokers Kafka
+topic_kafka = "python/kafka/corners"
+CLIENT_ID_KAFKA = f'python-kafka-{random.randint(0, 1000)}-1'
 
 def connect_mqtt():
     def on_connect(client, userdata, flags, rc):
@@ -23,8 +34,8 @@ def connect_mqtt():
         else:
             print("Failed to connect, return code %d\n", rc)
     # Set Connecting Client ID
-    client = mqtt_client.Client(CLIENT_ID)
-    client.username_pw_set(USERNAME, PASSWORD)
+    client = mqtt_client.Client(CLIENT_ID_MQTT)
+    client.username_pw_set(USERNAME_MQTT, PASSWORD_MQTT)
 
     # Security settings, not working
     # client.tls_set(certfile=None,
@@ -33,15 +44,20 @@ def connect_mqtt():
 
     client.on_connect = on_connect
     client.on_disconnect = on_disconnect
-    client.connect(broker, port)
+    client.connect(broker_mqtt, port_mqtt)
     return client
 
-# Connection settings
-FIRST_RECONNECT_DELAY = 1
-RECONNECT_RATE = 2
-MAX_RECONNECT_COUNT = 12
-MAX_RECONNECT_DELAY = 60
-FLAG_EXIT = False
+def connect_kafka_producer():
+    config = {
+        'bootstrap.servers': broker_kafka,
+        'client.id': CLIENT_ID_KAFKA
+    }
+    return Producer(config)
+
+def publish_message(producer, topic, key, message):
+    producer.produce(topic, key=key, value=json.dumps(message))
+    producer.flush()
+    
 
 def on_disconnect(client, userdata, rc):
     logging.info("Disconnected with result code: %s", rc)
@@ -64,14 +80,15 @@ def on_disconnect(client, userdata, rc):
     global FLAG_EXIT
     FLAG_EXIT = True
 
-def subscribe(client: mqtt_client):
+def subscribe_and_publish(client_mqtt, producer_kafka):
     def on_message(client, userdata, msg):
-        print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
+        print(f"Recibido `{msg.payload.decode()}` del tópico `{msg.topic}` en MQTT")
         msg = json.loads(str(msg.payload.decode("utf-8")))
-        #Save to db every recieved message
-        save(msg)
-    client.subscribe(topic)
-    client.on_message = on_message
+        publish_message(producer_kafka, topic_kafka, 'llave', msg)  # Publica en Kafka
+
+    client_mqtt.subscribe(topic_mqtt)
+    client_mqtt.on_message = on_message
+
 
 
 def save(msg):
@@ -99,11 +116,15 @@ def save(msg):
 
 
 def run():
-    logging.basicConfig(format='%(asctime)s - %(levelname)s: %(message)s',
-                        level=logging.DEBUG)
-    client = connect_mqtt()
-    subscribe(client)
-    client.loop_forever()
+    logging.basicConfig(format='%(asctime)s - %(levelname)s: %(message)s', level=logging.DEBUG)
+    
+    client_mqtt = connect_mqtt()
+    producer_kafka = connect_kafka_producer()
+    
+    subscribe_and_publish(client_mqtt, producer_kafka)
+    
+    client_mqtt.loop_forever()
+    
 
 if __name__ == '__main__':
     run()

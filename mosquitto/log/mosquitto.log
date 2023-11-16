@@ -50,3 +50,39 @@
 1700067856: Saving in-memory database to /mosquitto/data//mosquitto.db.
 1700068263: mosquitto version 2.0.18 terminating
 1700068263: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1700135357: mosquitto version 2.0.18 starting
+1700135357: Config loaded from /mosquitto/config/mosquitto.conf.
+1700135357: Opening ipv4 listen socket on port 1883.
+1700135357: mosquitto version 2.0.18 running
+1700135497: mosquitto version 2.0.18 terminating
+1700135497: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1700135503: mosquitto version 2.0.18 starting
+1700135503: Config loaded from /mosquitto/config/mosquitto.conf.
+1700135503: Opening ipv4 listen socket on port 1883.
+1700135503: mosquitto version 2.0.18 running
+1700151933: mosquitto version 2.0.18 starting
+1700151933: Config loaded from /mosquitto/config/mosquitto.conf.
+1700151933: Opening ipv4 listen socket on port 1883.
+1700151933: mosquitto version 2.0.18 running
+1700151984: New connection from 172.21.0.1:54742 on port 1883.
+1700151984: Client <unknown> disconnected due to protocol error.
+1700151984: New connection from 172.21.0.1:54744 on port 1883.
+1700151984: Client <unknown> disconnected due to protocol error.
+1700151984: New connection from 172.21.0.1:54746 on port 1883.
+1700151984: Client <unknown> disconnected due to protocol error.
+1700151984: New connection from 172.21.0.1:54748 on port 1883.
+1700151984: Client <unknown> disconnected due to protocol error.
+1700151984: New connection from 172.21.0.1:54750 on port 1883.
+1700151984: Client <unknown> disconnected due to protocol error.
+1700151984: New connection from 172.21.0.1:54752 on port 1883.
+1700151984: Client <unknown> disconnected due to protocol error.
+1700151984: New connection from 172.21.0.1:54754 on port 1883.
+1700151984: Client <unknown> disconnected due to protocol error.
+1700151984: New connection from 172.21.0.1:54756 on port 1883.
+1700151984: Client <unknown> disconnected due to protocol error.
+1700151984: New connection from 172.21.0.1:54758 on port 1883.
+1700151984: Client <unknown> disconnected due to protocol error.
+1700151984: New connection from 172.21.0.1:54760 on port 1883.
+1700151984: Client <unknown> disconnected due to protocol error.
+1700153734: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1700155535: Saving in-memory database to /mosquitto/data//mosquitto.db.
