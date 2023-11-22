@@ -13,7 +13,7 @@ MAX_RECONNECT_DELAY = 60
 FLAG_EXIT = False
 
 # Configuración de MQTT
-broker_mqtt = 'localhost'
+broker_mqtt = 'mosquitto'
 port_mqtt = 1883
 topic_mqtt = "python/mqtt/corners"
 CLIENT_ID_MQTT = f'python-mqtt-{random.randint(0, 1000)}-1'
@@ -21,7 +21,7 @@ USERNAME_MQTT = 'subscriber'
 PASSWORD_MQTT = 'public'
 
 # Configuración de Kafka
-broker_kafka = 'localhost:9092'  # Coloca la dirección de tus brokers Kafka
+broker_kafka = 'kafka:9092'  # Coloca la dirección de tus brokers Kafka
 topic_kafka = "python/kafka/corners"
 CLIENT_ID_KAFKA = f'python-kafka-{random.randint(0, 1000)}-1'
 
@@ -46,12 +46,15 @@ def connect_mqtt():
     return client
 
 def connect_kafka_producer():
-    config = {
-        'bootstrap.servers': broker_kafka,
-        'client.id': CLIENT_ID_KAFKA
-    }
-    return Producer(config)
-
+    try:
+        logging.info("Connecting to Kafka...")
+        config = {
+            'bootstrap.servers': broker_kafka,
+            'client.id': CLIENT_ID_KAFKA
+        }
+        return Producer(config)
+    except Exception as err:
+        logging.error("Failed to connect to Kafka. %s", err)
 def publish_message(producer, topic, key, message):
     producer.produce(topic, key=key, value=json.dumps(message))
     producer.flush()
@@ -118,7 +121,7 @@ def run():
     
     client_mqtt = connect_mqtt()
     producer_kafka = connect_kafka_producer()
-    
+    logging.info("Connected to Kafka!")
     subscribe_and_publish(client_mqtt, producer_kafka)
     
     client_mqtt.loop_forever()
