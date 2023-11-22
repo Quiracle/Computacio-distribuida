@@ -12,7 +12,8 @@ services:
       - ./mosquitto/data:/mosquitto/data
       - ./mosquitto/log:/mosquitto/log
     networks:
-      - mosquitto
+      - bridge
+
 
   influxdb:
     container_name: influxdb
@@ -25,12 +26,14 @@ services:
       - INFLUXDB_ADMIN_PASSWORD=pass
     volumes:
       - ./data:/var/lib/influxdb
+    networks:
+      - bridge
   
   kafka:
     image: 'bitnami/kafka:latest'
     user: root
     networks:
-      - kafka
+      - bridge
     environment:
       - KAFKA_CFG_NODE_ID=0
       - KAFKA_CFG_PROCESS_ROLES=controller,broker
@@ -51,14 +54,8 @@ services:
       - MQTT_USERNAME=public
       - MQTT_PASSWORD=public
     networks:
-      - mosquitto
+      - bridge
 
 networks:
-  mongo-compose-network:
-    driver: bridge
-
-  mosquitto:
-    driver: bridge
-  
-  kafka:
+  bridge:
     driver: bridge
