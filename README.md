@@ -1,1 +1,2 @@
 # Computacio-distribuida
+Token InfluxDB O7kF9_0DFZ_VkLA7Ec372IfEXTKuIXhMl3mIyVRZt8doUIND_yMofPb8ZFG2kemW26Xycq8EVR9YeefKZaetPg== 

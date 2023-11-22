@@ -7,8 +7,8 @@ from datetime import datetime
 import pytz
 import os
 
-broker = os.environ.get('MQTT_BROKER', 'localhost')
-port = os.environ.get('MQTT_PORT', 1883)
+broker = os.environ.get('MQTT_BROKER', 'mosquitto')
+port = int(os.environ.get('MQTT_PORT', 1883))
 mqtt_topic = 'actuators/heat_pump'
 CLIENT_ID = f'python-mqtt-{random.randint(0, 1000)}'
 
@@ -94,7 +94,7 @@ def subscribe(client: mqtt_client):
     def on_message(client, userdata, msg):
         logging.info(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
         msg = json.loads(str(msg.payload.decode("utf-8")))
-    client.subscribe(mqtt_topic)
+    # client.subscribe(mqtt_topic)
     client.on_message = on_message
 
 
