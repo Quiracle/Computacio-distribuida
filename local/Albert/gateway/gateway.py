@@ -4,15 +4,27 @@ from datetime import datetime, timedelta
 import time
 import json
 import random
-import pytz
+from confluent_kafka import Producer
 
-#Broker connection parameters
-broker = 'localhost'
-port = 1883
-topic = "python/mqtt/corners"
-CLIENT_ID = f'python-mqtt-{random.randint(0, 1000)}-1'
-USERNAME = 'subscriber'
-PASSWORD = 'public'
+# Connection settings
+FIRST_RECONNECT_DELAY = 1
+RECONNECT_RATE = 2
+MAX_RECONNECT_COUNT = 12
+MAX_RECONNECT_DELAY = 60
+FLAG_EXIT = False
+
+# Configuración de MQTT
+broker_mqtt = 'mosquitto'
+port_mqtt = 1883
+topic_mqtt = "python/mqtt/corners"
+CLIENT_ID_MQTT = f'python-mqtt-{random.randint(0, 1000)}-1'
+USERNAME_MQTT = 'subscriber'
+PASSWORD_MQTT = 'public'
+
+# Configuración de Kafka
+broker_kafka = 'localhost:9092'  # Coloca la dirección de tus brokers Kafka
+topic_kafka = "python/kafka/corners"
+CLIENT_ID_KAFKA = f'python-kafka-{random.randint(0, 1000)}-1'
 
 def connect_mqtt():
     def on_connect(client, userdata, flags, rc):
