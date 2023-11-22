@@ -94,7 +94,7 @@ def subscribe(client: mqtt_client):
     def on_message(client, userdata, msg):
         logging.info(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
         msg = json.loads(str(msg.payload.decode("utf-8")))
-    client.subscribe(mqtt_topic)
+    # client.subscribe(mqtt_topic)
     client.on_message = on_message
 
 

@@ -15,14 +15,14 @@ FLAG_EXIT = False
 # Configuración de MQTT
 broker_mqtt = 'mosquitto'
 port_mqtt = 1883
-topic_mqtt = "python/mqtt/corners"
+topic_mqtt = "actuators/heat_pump"
 CLIENT_ID_MQTT = f'python-mqtt-{random.randint(0, 1000)}-1'
 USERNAME_MQTT = 'subscriber'
 PASSWORD_MQTT = 'public'
 
 # Configuración de Kafka
 broker_kafka = 'kafka:9092'  # Coloca la dirección de tus brokers Kafka
-topic_kafka = "python/kafka/corners"
+topic_kafka = "sensors"
 CLIENT_ID_KAFKA = f'python-kafka-{random.randint(0, 1000)}-1'
 
 def connect_mqtt():
