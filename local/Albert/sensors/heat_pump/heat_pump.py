@@ -7,7 +7,7 @@ from datetime import datetime
 import pytz
 import os
 
-broker = os.environ.get('MQTT_BROKER', 'localhost')
+broker = os.environ.get('MQTT_BROKER', 'mosquitto')
 port = int(os.environ.get('MQTT_PORT', 1883))
 mqtt_topic = 'actuators/heat_pump'
 CLIENT_ID = f'python-mqtt-{random.randint(0, 1000)}'

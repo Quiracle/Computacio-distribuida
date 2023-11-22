@@ -1,10 +1,8 @@
 from paho.mqtt import client as mqtt_client
 import logging
-from datetime import datetime, timedelta
 import time
 import json
 import random
-import pytz
 from confluent_kafka import Producer
 
 # Connection settings

@@ -1,6 +1,7 @@
 version: "3.7"
 
 services:
+
   mosquitto:
     image: eclipse-mosquitto:latest
     ports:
@@ -13,7 +14,6 @@ services:
       - ./mosquitto/log:/mosquitto/log
     networks:
       - bridge
-
 
   influxdb:
     container_name: influxdb
@@ -48,6 +48,18 @@ services:
     container_name: albert-heat-pump
     build: ./local/Albert/sensors/heat_pump
     command: python3 ./heat_pump.py
+    environment:
+      - MQTT_BROKER=mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=public
+      - MQTT_PASSWORD=public
+    networks:
+      - bridge
+
+  albert-gateway:
+    container_name: albert-gateway
+    build: ./local/Albert/gateway
+    command: python3 ./gateway.py
     environment:
       - MQTT_BROKER=mosquitto
       - MQTT_PORT=1883
