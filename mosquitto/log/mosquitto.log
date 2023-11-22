@@ -290,3 +290,11 @@
 1700676061: New client connected from 192.168.48.5:39859 as python-mqtt-724 (p2, c1, k60, u'public').
 1700676081: New connection from 192.168.48.6:48553 on port 1883.
 1700676081: New client connected from 192.168.48.6:48553 as python-mqtt-246-1 (p2, c1, k60, u'subscriber').
+1700679172: mosquitto version 2.0.18 starting
+1700679172: Config loaded from /mosquitto/config/mosquitto.conf.
+1700679172: Opening ipv4 listen socket on port 1883.
+1700679172: mosquitto version 2.0.18 running
+1700679173: New connection from 172.22.0.2:59783 on port 1883.
+1700679173: New client connected from 172.22.0.2:59783 as python-mqtt-721 (p2, c1, k60, u'public').
+1700679173: New connection from 172.22.0.6:56377 on port 1883.
+1700679173: New client connected from 172.22.0.6:56377 as python-mqtt-818-1 (p2, c1, k60, u'subscriber').

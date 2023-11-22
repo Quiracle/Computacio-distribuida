@@ -62,21 +62,10 @@ services:
       - MQTT_PASSWORD=public
     networks:
       - bridge
-
-  albert-gateway:
-    container_name: albert-gateway
-    build: ./local/Albert/gateway
-    command: python3 ./gateway.py
-    environment:
-      - MQTT_BROKER=mosquitto
-      - MQTT_PORT=1883
-      - MQTT_USERNAME=public
-      - MQTT_PASSWORD=public
-    networks:
-      - bridge
     depends_on:
-      - mosquitto
-      - kafka
+      mosquitto:
+        condition: service_started
+
 
   albert-gateway:
     container_name: albert-gateway
@@ -92,6 +81,21 @@ services:
     depends_on:
       mosquitto:
         condition: service_started
+      kafka:
+        condition: service_healthy
+
+  save_microservice:
+    container_name: save_microservice
+    build: ./microservices/save_microservice
+    command: python3 ./save.py
+    environment:
+      - MQTT_BROKER=mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=public
+      - MQTT_PASSWORD=public
+    networks:
+      - bridge
+    depends_on:
       kafka:
         condition: service_healthy
 
