@@ -1,2 +1,2 @@
 paho-mqtt
-confluent_kafka
+kafka-python===2.0.2

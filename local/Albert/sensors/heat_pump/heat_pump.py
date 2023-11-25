@@ -73,6 +73,7 @@ def publish(client):
         msg_dict = {
             "timestamp": current_time,
             "value": random.randint(15,30),
+            "dispositive": "heat_pump",
         }
         
         if not client.is_connected():

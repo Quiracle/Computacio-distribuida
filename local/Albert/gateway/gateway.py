@@ -3,7 +3,7 @@ import logging
 import time
 import json
 import random
-from confluent_kafka import Producer
+from kafka import KafkaProducer
 
 # Connection settings
 FIRST_RECONNECT_DELAY = 1
@@ -22,7 +22,7 @@ PASSWORD_MQTT = 'public'
 
 # Configuración de Kafka
 broker_kafka = 'kafka:9092'  # Coloca la dirección de tus brokers Kafka
-topic_kafka = "sensors"
+topic_kafka = "sensors-raw"
 CLIENT_ID_KAFKA = f'python-kafka-{random.randint(0, 1000)}-1'
 
 def connect_mqtt():
@@ -85,7 +85,9 @@ def subscribe_and_publish(client_mqtt, producer_kafka):
     def on_message(client, userdata, msg):
         print(f"Recibido `{msg.payload.decode()}` del tópico `{msg.topic}` en MQTT")
         msg = json.loads(str(msg.payload.decode("utf-8")))
-        publish_message(producer_kafka, topic_kafka, 'llave', msg)  # Publica en Kafka
+        msg["user"] = "Albert"
+        logging.info("msg: %s", msg)
+        producer_kafka.send(topic_kafka, value=msg)
 
     client_mqtt.subscribe(topic_mqtt)
     client_mqtt.on_message = on_message
@@ -120,10 +122,15 @@ def run():
     logging.basicConfig(format='%(asctime)s - %(levelname)s: %(message)s', level=logging.DEBUG)
     
     client_mqtt = connect_mqtt()
-    producer_kafka = connect_kafka_producer()
+    my_producer = KafkaProducer(
+        bootstrap_servers=['kafka:9092'],
+        api_version=(0,11,5),
+        value_serializer=lambda x: json.dumps(x).encode('utf-8')
+    )
     logging.info("Connected to Kafka!")
-    subscribe_and_publish(client_mqtt, producer_kafka)
-    
+    subscribe_and_publish(client_mqtt, my_producer)
+
+
     client_mqtt.loop_forever()
     
 
