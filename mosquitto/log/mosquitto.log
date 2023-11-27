@@ -846,3 +846,307 @@
 1700948074: New client connected from 172.26.0.9:44921 as python-mqtt-222-1 (p2, c1, k60, u'subscriber').
 1700948074: New connection from 172.26.0.10:50217 on port 1883.
 1700948074: New client connected from 172.26.0.10:50217 as python-mqtt-399 (p2, c1, k60, u'public').
+1701086463: mosquitto version 2.0.18 starting
+1701086463: Config loaded from /mosquitto/config/mosquitto.conf.
+1701086463: Opening ipv4 listen socket on port 1883.
+1701086463: mosquitto version 2.0.18 running
+1701086464: New connection from 172.18.0.5:39649 on port 1883.
+1701086464: New client connected from 172.18.0.5:39649 as python-mqtt-531 (p2, c1, k60, u'public').
+1701086469: New connection from 172.18.0.7:41923 on port 1883.
+1701086469: New client connected from 172.18.0.7:41923 as python-mqtt-336-1 (p2, c1, k60, u'subscriber').
+1701086470: New connection from 172.18.0.8:47173 on port 1883.
+1701086470: New client connected from 172.18.0.8:47173 as python-mqtt-877 (p2, c1, k60, u'public').
+1701086534: Client python-mqtt-531 closed its connection.
+1701086534: Client python-mqtt-336-1 closed its connection.
+1701086534: Client python-mqtt-877 closed its connection.
+1701086535: mosquitto version 2.0.18 terminating
+1701086535: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1701086544: mosquitto version 2.0.18 starting
+1701086544: Config loaded from /mosquitto/config/mosquitto.conf.
+1701086544: Opening ipv4 listen socket on port 1883.
+1701086544: mosquitto version 2.0.18 running
+1701086545: New connection from 172.19.0.5:35519 on port 1883.
+1701086545: New client connected from 172.19.0.5:35519 as python-mqtt-96 (p2, c1, k60, u'public').
+1701086551: New connection from 172.19.0.8:58121 on port 1883.
+1701086551: New client connected from 172.19.0.8:58121 as python-mqtt-693 (p2, c1, k60, u'public').
+1701086551: New connection from 172.19.0.9:54153 on port 1883.
+1701086551: New client connected from 172.19.0.9:54153 as python-mqtt-867-1 (p2, c1, k60, u'subscriber').
+1701086557: Client python-mqtt-693 closed its connection.
+1701086904: Client python-mqtt-867-1 closed its connection.
+1701086904: Client python-mqtt-96 closed its connection.
+1701086905: mosquitto version 2.0.18 terminating
+1701086905: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1701087526: mosquitto version 2.0.18 starting
+1701087526: Config loaded from /mosquitto/config/mosquitto.conf.
+1701087526: Opening ipv4 listen socket on port 1883.
+1701087526: mosquitto version 2.0.18 running
+1701087526: New connection from 172.20.0.5:54463 on port 1883.
+1701087526: New client connected from 172.20.0.5:54463 as python-mqtt-967 (p2, c1, k60, u'public').
+1701087532: New connection from 172.20.0.9:35479 on port 1883.
+1701087532: New client connected from 172.20.0.9:35479 as python-mqtt-1 (p2, c1, k60, u'public').
+1701087532: New connection from 172.20.0.10:40171 on port 1883.
+1701087532: New client connected from 172.20.0.10:40171 as python-mqtt-800-1 (p2, c1, k60, u'subscriber').
+1701087606: Client python-mqtt-967 closed its connection.
+1701087606: Client python-mqtt-800-1 closed its connection.
+1701087606: Client python-mqtt-1 closed its connection.
+1701087607: mosquitto version 2.0.18 terminating
+1701087607: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1701087846: mosquitto version 2.0.18 starting
+1701087846: Config loaded from /mosquitto/config/mosquitto.conf.
+1701087846: Opening ipv4 listen socket on port 1883.
+1701087846: mosquitto version 2.0.18 running
+1701087846: New connection from 172.21.0.5:51781 on port 1883.
+1701087846: New client connected from 172.21.0.5:51781 as python-mqtt-490 (p2, c1, k60, u'public').
+1701087846: Client python-mqtt-490 closed its connection.
+1701087852: New connection from 172.21.0.7:45381 on port 1883.
+1701087852: New client connected from 172.21.0.7:45381 as python-mqtt-755-1 (p2, c1, k60, u'subscriber').
+1701087853: New connection from 172.21.0.9:44645 on port 1883.
+1701087853: New client connected from 172.21.0.9:44645 as python-mqtt-150 (p2, c1, k60, u'public').
+1701087881: New connection from 172.21.0.10:34191 on port 1883.
+1701087881: New client connected from 172.21.0.10:34191 as python-mqtt-594 (p2, c1, k60, u'public').
+1701087976: Client python-mqtt-150 closed its connection.
+1701087978: New connection from 172.21.0.9:56979 on port 1883.
+1701087978: New client connected from 172.21.0.9:56979 as python-mqtt-778 (p2, c1, k60, u'public').
+1701088088: Client python-mqtt-594 closed its connection.
+1701088088: Client python-mqtt-755-1 closed its connection.
+1701088089: Client python-mqtt-778 closed its connection.
+1701088090: mosquitto version 2.0.18 terminating
+1701088090: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1701094090: mosquitto version 2.0.18 starting
+1701094090: Config loaded from /mosquitto/config/mosquitto.conf.
+1701094090: Opening ipv4 listen socket on port 1883.
+1701094090: mosquitto version 2.0.18 running
+1701094091: New connection from 172.22.0.5:60823 on port 1883.
+1701094091: New client connected from 172.22.0.5:60823 as python-mqtt-662 (p2, c1, k60, u'public').
+1701094096: New connection from 172.22.0.7:40755 on port 1883.
+1701094096: New client connected from 172.22.0.7:40755 as python-mqtt-601-1 (p2, c1, k60, u'subscriber').
+1701094096: New connection from 172.22.0.10:44973 on port 1883.
+1701094096: New client connected from 172.22.0.10:44973 as python-mqtt-478 (p2, c1, k60, u'public').
+1701094153: Client python-mqtt-601-1 closed its connection.
+1701094153: Client python-mqtt-662 closed its connection.
+1701094153: Client python-mqtt-478 closed its connection.
+1701094155: mosquitto version 2.0.18 terminating
+1701094155: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1701097442: mosquitto version 2.0.18 starting
+1701097442: Config loaded from /mosquitto/config/mosquitto.conf.
+1701097442: Opening ipv4 listen socket on port 1883.
+1701097442: mosquitto version 2.0.18 running
+1701097443: New connection from 172.23.0.6:51815 on port 1883.
+1701097443: New client connected from 172.23.0.6:51815 as python-mqtt-60 (p2, c1, k60, u'public').
+1701097443: New connection from 172.23.0.8:50269 on port 1883.
+1701097443: New client connected from 172.23.0.8:50269 as python-mqtt-974 (p2, c1, k60, u'public').
+1701097450: New connection from 172.23.0.10:60499 on port 1883.
+1701097450: New client connected from 172.23.0.10:60499 as python-mqtt-756 (p2, c1, k60, u'public').
+1701097628: Client python-mqtt-60 closed its connection.
+1701097628: Client python-mqtt-756 closed its connection.
+1701097628: Client python-mqtt-974 closed its connection.
+1701097630: mosquitto version 2.0.18 terminating
+1701097630: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1701097637: mosquitto version 2.0.18 starting
+1701097637: Config loaded from /mosquitto/config/mosquitto.conf.
+1701097637: Opening ipv4 listen socket on port 1883.
+1701097637: mosquitto version 2.0.18 running
+1701097638: New connection from 172.24.0.5:36319 on port 1883.
+1701097638: New client connected from 172.24.0.5:36319 as python-mqtt-395 (p2, c1, k60, u'public').
+1701097638: New connection from 172.24.0.6:51809 on port 1883.
+1701097638: New client connected from 172.24.0.6:51809 as python-mqtt-462 (p2, c1, k60, u'public').
+1701097638: New connection from 172.24.0.7:55793 on port 1883.
+1701097638: New client connected from 172.24.0.7:55793 as python-mqtt-601 (p2, c1, k60, u'public').
+1701097638: New connection from 172.24.0.8:38065 on port 1883.
+1701097638: New client connected from 172.24.0.8:38065 as python-mqtt-430 (p2, c1, k60, u'public').
+1701097639: Client python-mqtt-601 closed its connection.
+1701097639: Client python-mqtt-430 closed its connection.
+1701097644: New connection from 172.24.0.8:54565 on port 1883.
+1701097644: New client connected from 172.24.0.8:54565 as python-mqtt-71 (p2, c1, k60, u'public').
+1701097644: New connection from 172.24.0.10:55165 on port 1883.
+1701097644: New client connected from 172.24.0.10:55165 as python-mqtt-504 (p2, c1, k60, u'public').
+1701097719: New connection from 172.24.0.13:54877 on port 1883.
+1701097719: New client connected from 172.24.0.13:54877 as python-mqtt-151 (p2, c1, k60, u'public').
+1701097719: New connection from 172.24.0.12:48645 on port 1883.
+1701097719: New client connected from 172.24.0.12:48645 as python-mqtt-722 (p2, c1, k60, u'public').
+1701097752: Client python-mqtt-395 closed its connection.
+1701097752: Client python-mqtt-722 closed its connection.
+1701097752: Client python-mqtt-71 closed its connection.
+1701097752: Client python-mqtt-504 closed its connection.
+1701097752: Client python-mqtt-151 closed its connection.
+1701097752: Client python-mqtt-462 closed its connection.
+1701097755: mosquitto version 2.0.18 terminating
+1701097755: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1701097801: mosquitto version 2.0.18 starting
+1701097801: Config loaded from /mosquitto/config/mosquitto.conf.
+1701097801: Opening ipv4 listen socket on port 1883.
+1701097801: mosquitto version 2.0.18 running
+1701097802: New connection from 172.25.0.5:40813 on port 1883.
+1701097802: New client connected from 172.25.0.5:40813 as python-mqtt-761 (p2, c1, k60, u'public').
+1701097802: New connection from 172.25.0.6:41095 on port 1883.
+1701097802: New client connected from 172.25.0.6:41095 as python-mqtt-898 (p2, c1, k60, u'public').
+1701097802: New connection from 172.25.0.7:57495 on port 1883.
+1701097802: New client connected from 172.25.0.7:57495 as python-mqtt-780 (p2, c1, k60, u'public').
+1701097802: New connection from 172.25.0.8:52691 on port 1883.
+1701097802: New client connected from 172.25.0.8:52691 as python-mqtt-273 (p2, c1, k60, u'public').
+1701097808: New connection from 172.25.0.11:59303 on port 1883.
+1701097808: New client connected from 172.25.0.11:59303 as python-mqtt-160 (p2, c1, k60, u'public').
+1701097808: New connection from 172.25.0.10:46793 on port 1883.
+1701097808: New client connected from 172.25.0.10:46793 as python-mqtt-828 (p2, c1, k60, u'public').
+1701097903: Client python-mqtt-273 closed its connection.
+1701097903: Client python-mqtt-898 closed its connection.
+1701097905: New connection from 172.25.0.8:59691 on port 1883.
+1701097905: New connection from 172.25.0.6:39601 on port 1883.
+1701097905: New client connected from 172.25.0.8:59691 as python-mqtt-24 (p2, c1, k60, u'public').
+1701097905: New client connected from 172.25.0.6:39601 as python-mqtt-860 (p2, c1, k60, u'public').
+1701097906: Client python-mqtt-24 closed its connection.
+1701097906: Client python-mqtt-860 closed its connection.
+1701097912: New connection from 172.25.0.6:60897 on port 1883.
+1701097912: New client connected from 172.25.0.6:60897 as python-mqtt-640 (p2, c1, k60, u'public').
+1701097913: Client python-mqtt-640 closed its connection.
+1701098138: Client python-mqtt-828 closed its connection.
+1701098140: New connection from 172.25.0.6:43889 on port 1883.
+1701098140: New client connected from 172.25.0.6:43889 as python-mqtt-582 (p2, c1, k60, u'public').
+1701098140: New connection from 172.25.0.8:59349 on port 1883.
+1701098140: New client connected from 172.25.0.8:59349 as python-mqtt-739 (p2, c1, k60, u'public').
+1701098140: New connection from 172.25.0.10:57295 on port 1883.
+1701098140: New client connected from 172.25.0.10:57295 as python-mqtt-86 (p2, c1, k60, u'public').
+1701098321: Client python-mqtt-86 closed its connection.
+1701098323: New connection from 172.25.0.10:56677 on port 1883.
+1701098323: New client connected from 172.25.0.10:56677 as python-mqtt-482 (p2, c1, k60, u'public').
+1701098380: Client python-mqtt-739 closed its connection.
+1701098381: New connection from 172.25.0.8:38349 on port 1883.
+1701098381: New connection from 172.25.0.8:37963 on port 1883.
+1701098381: New client connected from 172.25.0.8:38349 as python-mqtt-739 (p2, c1, k60, u'public').
+1701098381: Client python-mqtt-739 already connected, closing old connection.
+1701098381: New client connected from 172.25.0.8:37963 as python-mqtt-739 (p2, c1, k60, u'public').
+1701098527: Client python-mqtt-761 closed its connection.
+1701098527: Client python-mqtt-160 closed its connection.
+1701098527: Client python-mqtt-482 closed its connection.
+1701098527: Client python-mqtt-582 closed its connection.
+1701098527: Client python-mqtt-739 closed its connection.
+1701098527: Client python-mqtt-780 closed its connection.
+1701098530: mosquitto version 2.0.18 terminating
+1701098530: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1701098538: mosquitto version 2.0.18 starting
+1701098538: Config loaded from /mosquitto/config/mosquitto.conf.
+1701098538: Opening ipv4 listen socket on port 1883.
+1701098538: mosquitto version 2.0.18 running
+1701098539: New connection from 172.26.0.5:51889 on port 1883.
+1701098539: New client connected from 172.26.0.5:51889 as python-mqtt-494 (p2, c1, k60, u'public').
+1701098539: New connection from 172.26.0.6:49593 on port 1883.
+1701098539: New client connected from 172.26.0.6:49593 as python-mqtt-883 (p2, c1, k60, u'public').
+1701098539: New connection from 172.26.0.7:58977 on port 1883.
+1701098539: New client connected from 172.26.0.7:58977 as python-mqtt-50 (p2, c1, k60, u'public').
+1701098539: New connection from 172.26.0.8:59247 on port 1883.
+1701098539: New client connected from 172.26.0.8:59247 as python-mqtt-155 (p2, c1, k60, u'public').
+1701098545: New connection from 172.26.0.13:40259 on port 1883.
+1701098545: New client connected from 172.26.0.13:40259 as python-mqtt-423 (p2, c1, k60, u'public').
+1701098545: New connection from 172.26.0.12:36805 on port 1883.
+1701098545: New client connected from 172.26.0.12:36805 as python-mqtt-623 (p2, c1, k60, u'public').
+1701098545: Client python-mqtt-623 closed its connection.
+1701098659: Client python-mqtt-494 closed its connection.
+1701098660: New connection from 172.26.0.5:40117 on port 1883.
+1701098660: New connection from 172.26.0.5:48239 on port 1883.
+1701098660: New client connected from 172.26.0.5:40117 as python-mqtt-494 (p2, c1, k60, u'public').
+1701098660: Client python-mqtt-494 already connected, closing old connection.
+1701098660: New client connected from 172.26.0.5:48239 as python-mqtt-494 (p2, c1, k60, u'public').
+1701098840: Client python-mqtt-494 closed its connection.
+1701098841: New connection from 172.26.0.5:56715 on port 1883.
+1701098841: New connection from 172.26.0.5:43457 on port 1883.
+1701098841: Client <unknown> closed its connection.
+1701098841: New client connected from 172.26.0.5:43457 as python-mqtt-494 (p2, c1, k60, u'public').
+1701098841: Bad client python-mqtt-494 sending multiple CONNECT messages.
+1701098841: Client python-mqtt-494 disconnected due to protocol error.
+1701098842: New connection from 172.26.0.5:57839 on port 1883.
+1701098844: Client <unknown> closed its connection.
+1701098844: New connection from 172.26.0.5:52097 on port 1883.
+1701098844: New client connected from 172.26.0.5:52097 as python-mqtt-494 (p2, c1, k60, u'public').
+1701098920: New connection from 172.26.0.12:36457 on port 1883.
+1701098920: New client connected from 172.26.0.12:36457 as python-mqtt-362 (p2, c1, k60, u'public').
+1701098971: Client python-mqtt-362 closed its connection.
+1701098973: New connection from 172.26.0.12:40343 on port 1883.
+1701098973: New client connected from 172.26.0.12:40343 as python-mqtt-350 (p2, c1, k60, u'public').
+1701099056: Client python-mqtt-350 closed its connection.
+1701099058: New connection from 172.26.0.12:57399 on port 1883.
+1701099058: New client connected from 172.26.0.12:57399 as python-mqtt-172 (p2, c1, k60, u'public').
+1701099139: Client python-mqtt-883 closed its connection.
+1701099140: New connection from 172.26.0.6:55331 on port 1883.
+1701099140: New connection from 172.26.0.6:41995 on port 1883.
+1701099140: Client <unknown> closed its connection.
+1701099140: New client connected from 172.26.0.6:41995 as python-mqtt-883 (p2, c1, k60, u'public').
+1701099140: Bad client python-mqtt-883 sending multiple CONNECT messages.
+1701099140: Client python-mqtt-883 disconnected due to protocol error.
+1701099141: New connection from 172.26.0.6:46859 on port 1883.
+1701099142: Client <unknown> closed its connection.
+1701099142: New connection from 172.26.0.6:35483 on port 1883.
+1701099142: New connection from 172.26.0.6:33545 on port 1883.
+1701099142: Client <unknown> closed its connection.
+1701099142: New client connected from 172.26.0.6:33545 as python-mqtt-883 (p2, c1, k60, u'public').
+1701099142: Bad client python-mqtt-883 sending multiple CONNECT messages.
+1701099142: Client python-mqtt-883 disconnected due to protocol error.
+1701099143: New connection from 172.26.0.6:41631 on port 1883.
+1701099144: Client <unknown> closed its connection.
+1701099144: New connection from 172.26.0.6:36459 on port 1883.
+1701099144: New client connected from 172.26.0.6:36459 as python-mqtt-883 (p2, c1, k60, u'public').
+1701099144: New connection from 172.26.0.6:55315 on port 1883.
+1701099144: Client python-mqtt-883 closed its connection.
+1701099144: New client connected from 172.26.0.6:55315 as python-mqtt-883 (p2, c1, k60, u'public').
+1701099243: Client python-mqtt-172 closed its connection.
+1701099245: New connection from 172.26.0.12:59727 on port 1883.
+1701099245: New client connected from 172.26.0.12:59727 as python-mqtt-319 (p2, c1, k60, u'public').
+1701099245: Client python-mqtt-319 closed its connection.
+1701099323: New connection from 172.26.0.12:38655 on port 1883.
+1701099323: New client connected from 172.26.0.12:38655 as python-mqtt-857 (p2, c1, k60, u'public').
+1701099375: Client python-mqtt-494 closed its connection.
+1701099375: Client python-mqtt-423 closed its connection.
+1701099375: Client python-mqtt-155 closed its connection.
+1701099375: Client python-mqtt-857 closed its connection.
+1701099375: Client python-mqtt-50 closed its connection.
+1701099375: Client python-mqtt-883 closed its connection.
+1701099378: mosquitto version 2.0.18 terminating
+1701099378: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1701099390: mosquitto version 2.0.18 starting
+1701099390: Config loaded from /mosquitto/config/mosquitto.conf.
+1701099390: Opening ipv4 listen socket on port 1883.
+1701099390: mosquitto version 2.0.18 running
+1701099391: New connection from 172.27.0.5:57147 on port 1883.
+1701099391: New client connected from 172.27.0.5:57147 as python-mqtt-333 (p2, c1, k60, u'public').
+1701099391: New connection from 172.27.0.6:35571 on port 1883.
+1701099391: New client connected from 172.27.0.6:35571 as python-mqtt-36 (p2, c1, k60, u'public').
+1701099391: New connection from 172.27.0.8:54477 on port 1883.
+1701099391: New client connected from 172.27.0.8:54477 as python-mqtt-803 (p2, c1, k60, u'public').
+1701099391: New connection from 172.27.0.7:41309 on port 1883.
+1701099391: New client connected from 172.27.0.7:41309 as python-mqtt-352 (p2, c1, k60, u'public').
+1701099396: New connection from 172.27.0.12:39701 on port 1883.
+1701099396: New client connected from 172.27.0.12:39701 as python-mqtt-836 (p2, c1, k60, u'public').
+1701099397: New connection from 172.27.0.13:42591 on port 1883.
+1701099397: New client connected from 172.27.0.13:42591 as python-mqtt-522 (p2, c1, k60, u'public').
+1701099495: Client python-mqtt-333 closed its connection.
+1701099495: Client python-mqtt-836 closed its connection.
+1701099495: Client python-mqtt-36 closed its connection.
+1701099495: Client python-mqtt-803 closed its connection.
+1701099495: Client python-mqtt-352 closed its connection.
+1701099495: Client python-mqtt-522 closed its connection.
+1701099498: mosquitto version 2.0.18 terminating
+1701099498: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1701099790: mosquitto version 2.0.18 starting
+1701099790: Config loaded from /mosquitto/config/mosquitto.conf.
+1701099790: Opening ipv4 listen socket on port 1883.
+1701099790: mosquitto version 2.0.18 running
+1701099790: New connection from 172.28.0.5:38321 on port 1883.
+1701099790: New client connected from 172.28.0.5:38321 as python-mqtt-919 (p2, c1, k60, u'public').
+1701099790: New connection from 172.28.0.6:60379 on port 1883.
+1701099790: New client connected from 172.28.0.6:60379 as python-mqtt-936 (p2, c1, k60, u'public').
+1701099790: New connection from 172.28.0.7:55413 on port 1883.
+1701099790: New client connected from 172.28.0.7:55413 as python-mqtt-486 (p2, c1, k60, u'public').
+1701099791: New connection from 172.28.0.8:54085 on port 1883.
+1701099791: New client connected from 172.28.0.8:54085 as python-mqtt-361 (p2, c1, k60, u'public').
+1701099796: New connection from 172.28.0.10:47791 on port 1883.
+1701099796: New client connected from 172.28.0.10:47791 as python-mqtt-818 (p2, c1, k60, u'public').
+1701099797: New connection from 172.28.0.13:58105 on port 1883.
+1701099797: New client connected from 172.28.0.13:58105 as python-mqtt-677 (p2, c1, k60, u'public').
+1701099902: Client python-mqtt-677 closed its connection.
+1701099903: New connection from 172.28.0.13:36341 on port 1883.
+1701099903: New client connected from 172.28.0.13:36341 as python-mqtt-276 (p2, c1, k60, u'public').
+1701099911: Client python-mqtt-361 closed its connection.
+1701099912: New connection from 172.28.0.8:44435 on port 1883.
+1701099912: New client connected from 172.28.0.8:44435 as python-mqtt-361 (p2, c1, k60, u'public').
+1701099912: New connection from 172.28.0.8:42455 on port 1883.
+1701099912: Client python-mqtt-361 closed its connection.
+1701099912: New client connected from 172.28.0.8:42455 as python-mqtt-361 (p2, c1, k60, u'public').

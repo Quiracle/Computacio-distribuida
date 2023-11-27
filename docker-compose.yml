@@ -62,20 +62,6 @@ services:
     networks:
       - bridge
   
-  albert-heat-pump:
-    container_name: albert-heat-pump
-    build: ./local/Albert/sensors/heat_pump
-    command: python3 ./heat_pump.py
-    environment:
-      - MQTT_BROKER=mosquitto
-      - MQTT_PORT=1883
-      - MQTT_USERNAME=public
-      - MQTT_PASSWORD=public
-    networks:
-      - bridge
-    depends_on:
-      mosquitto:
-        condition: service_started
 
 
   albert-gateway:
@@ -87,6 +73,7 @@ services:
       - MQTT_PORT=1883
       - MQTT_USERNAME=public
       - MQTT_PASSWORD=public
+      - KAFKA_BROKER=kafka:9092
     networks:
       - bridge
     depends_on:
@@ -139,6 +126,66 @@ services:
     depends_on:
       kafka:
         condition: service_healthy
+      mosquitto:
+        condition: service_started
+
+  albert-heat-pump:
+    container_name: albert-heat-pump
+    build: ./local/Albert/sensors/heat_pump
+    command: python3 ./heat_pump.py
+    environment:
+      - MQTT_BROKER=mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=public
+      - MQTT_PASSWORD=public
+    networks:
+      - bridge
+    depends_on:
+      mosquitto:
+        condition: service_started
+
+  albert-light-bulb:
+    container_name: albert-light-bulb
+    build: ./local/Albert/sensors/light_bulb
+    command: python3 ./light_bulb.py
+    environment:
+      - MQTT_BROKER=mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=public
+      - MQTT_PASSWORD=public
+    networks:
+      - bridge
+    depends_on:
+      mosquitto:
+        condition: service_started
+
+  albert-presence-sensor:
+    container_name: albert-presence-sensor
+    build: ./local/Albert/sensors/presence_sensor
+    command: python3 ./presence_sensor.py
+    environment:
+      - MQTT_BROKER=mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=public
+      - MQTT_PASSWORD=public
+    networks:
+      - bridge
+    depends_on:
+      mosquitto:
+        condition: service_started
+
+  albert-temperature-sensor:
+    container_name: albert-temperature-sensor
+    build: ./local/Albert/sensors/temperature_sensor
+    command: python3 ./temperature_sensor.py
+    environment:
+      - MQTT_BROKER=mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=public
+      - MQTT_PASSWORD=public
+    networks:
+      - bridge
+    depends_on:
       mosquitto:
         condition: service_started
 

@@ -26,14 +26,15 @@ def publish_message(producer, topic, key, message):
 
 
 def isAccepted(msg):
-    if msg["dispositive"] == "presence_sensor":
-        return msg["value"] == 1
-    if msg["dispositive"] == "temperature_sensor":
-        return msg["value"] > 20 and msg["value"] < 30
-    if msg["dispositive"] == "heat_pump":
-        return msg["value"] > 20 and msg["value"] < 30
-    if msg["dispositive"] == "light_bulb":
-        return msg["value"] == 1
+    if msg["device"] == "presence_sensor":
+        return msg["value"] >= 0 and msg["value"] <= 100
+    if msg["device"] == "temperature_sensor":
+        return msg["value"] >= 18 and msg["value"] <= 28
+    return False
+    # if msg["device"] == "heat_pump":
+    #     return msg["value"] > 20 and msg["value"] < 30
+    # if msg["device"] == "light_bulb":
+    #     return msg["value"] == 1
 
 def subscribe(consumer_producer_kafka):
     consumer_producer_kafka.subscribe([topic_kafka])

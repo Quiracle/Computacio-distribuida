@@ -6,11 +6,17 @@ import random
 from datetime import datetime
 import pytz
 import os
+import Config
+
+STATES = Config.POSSIBLE_STATES
+
+CURRENT_STATE = random.choice(STATES)
+PREVIOUS_STATE = CURRENT_STATE
 
 broker = os.environ.get('MQTT_BROKER', 'localhost')
-port = os.environ.get('MQTT_PORT', 1883)
-mqtt_topic = 'sensors/temperature_sensor'
-CLIENT_ID = f'python-mqtt-{random.randint(0, 1000)}'
+port = int(os.environ.get('MQTT_PORT', 1883))
+mqtt_topic = Config.MQTT_TOPIC_SEND
+CLIENT_ID = Config.CLIENT_ID
 
 USERNAME = os.environ.get('MQTT_USERNAME', 'public')
 PASSWORD = os.environ.get('MQTT_PASSWORD', 'public')
@@ -58,37 +64,35 @@ def on_disconnect(client, userdata, rc):
     global FLAG_EXIT
     FLAG_EXIT = True
 
-routes=[[1,3,7],[1,3,1],[1,3,5]]
-
-{
-    "v0":[{"street":1,"duration":5},{"street":3,"duration":10},{"street":7,"duration":10}]
-}
 def publish(client):
-    msg_count = 1
+    global CURRENT_STATE, PREVIOUS_STATE
     while not FLAG_EXIT:
-        t = time.localtime()
-        #Define message to publish
-        current_time = str(datetime.now(pytz.timezone("Europe/Gibraltar")).strftime("%Y-%m-%d %H:%M:%S"))
+        PREVIOUS_STATE = CURRENT_STATE
+        CURRENT_STATE = random.choice(STATES)
+        if CURRENT_STATE != PREVIOUS_STATE:
+            t = time.localtime()
+            #Define message to publish
+            current_time = str(datetime.now(pytz.timezone("Europe/Gibraltar")).strftime("%Y-%m-%d %H:%M:%S"))
 
-        msg_dict = {
-            "timestamp": current_time,
-            "value": random.randint(12, 35),
-        }
-        
-        if not client.is_connected():
-            logging.error("publish: MQTT client is not connected!")
-            time.sleep(1)
-            continue
+            msg_dict = {
+                "timestamp": current_time,
+                "value": random.randint(12, 35),
+                "device": Config.DEVICE_NAME,
+            }
+            
+            if not client.is_connected():
+                logging.error("publish: MQTT client is not connected!")
+                time.sleep(1)
+                continue
+            msg = json.dumps(msg_dict)
+            result = client.publish(mqtt_topic, msg)
+            # result: [0, 1]
+            status = result[0]
+            if status == 0:
+                logging.info(f"Send `{msg}` to topic `{mqtt_topic}`")
+            else:
+                logging.error(f"Failed to send message to topic {mqtt_topic}")
         time.sleep(1)
-        msg = json.dumps(msg_dict)
-        result = client.publish(mqtt_topic, msg)
-        # result: [0, 1]
-        status = result[0]
-        if status == 0:
-            logging.info(f"Send `{msg}` to topic `{mqtt_topic}`")
-        else:
-            logging.error(f"Failed to send message to topic {mqtt_topic}")
-        msg_count += 1
 
 def run():
     logging.basicConfig(format='%(asctime)s - %(levelname)s: %(message)s',

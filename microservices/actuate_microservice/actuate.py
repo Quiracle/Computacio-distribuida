@@ -2,6 +2,7 @@ from kafka import KafkaConsumer
 import random
 import logging
 import json
+import Config
 
 broker_kafka = 'kafka:9092'  # Coloca la dirección de tus brokers Kafka
 topic_kafka = "sensors-clean"
@@ -17,8 +18,8 @@ import pytz
 import os
 
 broker = os.environ.get('MQTT_BROKER', 'localhost')
-port = int(os.environ.get('MQTT_PORT', 1883))
-mqtt_topic = 'actuators/light_bulb'
+
+mqtt_topic = 'actuators/heat_pump/action'
 CLIENT_ID = f'python-mqtt-{random.randint(0, 1000)}'
 
 USERNAME = os.environ.get('MQTT_USERNAME', 'public')
@@ -36,7 +37,7 @@ def connect_mqtt():
 
     client.on_connect = on_connect
     client.on_disconnect = on_disconnect
-    client.connect(broker, port)
+    client.connect(broker, Config.ALBERT_PORT)
     return client
 
 #Connection behaviour settings
@@ -100,7 +101,7 @@ def connect_kafka_consumer():
         bootstrap_servers=['kafka:9092'],
         auto_offset_reset='latest',
         enable_auto_commit=True,
-        group_id='my-group2',
+        group_id='my-group3',
         api_version=(0,11,5),
         value_deserializer=lambda x: json.loads(x.decode('utf-8'))
     )
@@ -120,18 +121,23 @@ def subscribe(consumer_kafka):
         else:
             logging.info(f"Received message from consumer {msg.value().decode('utf-8')}")
 
-def needsAction(msg):
-    if msg["dispositive"] == "presence_sensor":
-        return msg["value"] == 1
-    if msg["dispositive"] == "temperature_sensor":
-        return msg["value"] > 20 and msg["value"] < 30
-    if msg["dispositive"] == "heat_pump":
-        return msg["value"] > 20 and msg["value"] < 30
-    if msg["dispositive"] == "light_bulb":
-        return msg["value"] == 1
+def neededAction(msg):
+    if msg["device"] == "presence_sensor":
+        if msg["value"] >= 50:
+            return 1
+        else:
+            return 0
+    if msg["device"] == "temperature_sensor":
+        if msg["value"] <= 20:
+            return 20
+        if msg["value"] >= 24:
+            return 24
+    # if msg["device"] == "heat_pump":
+    #     return msg["value"] > 20 and msg["value"] < 30
+    # if msg["device"] == "light_bulb":
+    #     return msg["value"] == 1
 
 def actuate(msg, client):
-    logging.info(f"ACTUATIIING")
     msg = json.dumps(msg)
     result = client.publish(mqtt_topic, msg)
     # result: [0, 1]
@@ -140,7 +146,6 @@ def actuate(msg, client):
         logging.info(f"Send `{msg}` to topic `{mqtt_topic}`")
     else:
         logging.error(f"Failed to send message to topic {mqtt_topic}")
-    msg_count += 1
 
 def run():
     logging.basicConfig(format='%(asctime)s - %(levelname)s: %(message)s', level=logging.INFO)
@@ -151,7 +156,11 @@ def run():
     for message in consumer_kafka:
         message = message.value
         logging.info(f"{message} is being processed")
-        if needsAction(message):
-            actuate(message, client)
+        value = neededAction(message)
+        action = {
+            "device": message["device"],
+            "value": value
+        }
+        actuate(action, client)
 if __name__ == '__main__':
     run()

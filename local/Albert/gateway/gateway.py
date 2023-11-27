@@ -4,6 +4,8 @@ import time
 import json
 import random
 from kafka import KafkaProducer
+import Config
+import os
 
 # Connection settings
 FIRST_RECONNECT_DELAY = 1
@@ -13,17 +15,17 @@ MAX_RECONNECT_DELAY = 60
 FLAG_EXIT = False
 
 # Configuración de MQTT
-broker_mqtt = 'mosquitto'
-port_mqtt = 1883
-topic_mqtt = "actuators/heat_pump"
-CLIENT_ID_MQTT = f'python-mqtt-{random.randint(0, 1000)}-1'
-USERNAME_MQTT = 'subscriber'
-PASSWORD_MQTT = 'public'
+mqtt_broker = os.environ.get('MQTT_BROKER', 'mosquitto')
+mqtt_port = int(os.environ.get('MQTT_PORT', 1883))
+topic_mqtt = Config.MQTT_TOPIC_RECEIVE
+MQTT_CLIENT_ID = Config.MQTT_CLIENT_ID
+MQTT_USERNAME = os.environ.get('MQTT_USERNAME', 'public')
+MQTT_PASSWORD = os.environ.get('MQTT_PASSWORD', 'public')
 
 # Configuración de Kafka
-broker_kafka = 'kafka:9092'  # Coloca la dirección de tus brokers Kafka
-topic_kafka = "sensors-raw"
-CLIENT_ID_KAFKA = f'python-kafka-{random.randint(0, 1000)}-1'
+kafka_broker = os.environ.get('KAFKA_BROKER','kafka:9092')  # Coloca la dirección de tus brokers Kafka
+kafka_topic = Config.KAFKA_TOPIC
+KAFKA_CLIENT_ID = Config.KAFKA_CLIENT_ID
 
 def connect_mqtt():
     def on_connect(client, userdata, flags, rc):
@@ -32,8 +34,8 @@ def connect_mqtt():
         else:
             print("Failed to connect, return code %d\n", rc)
     # Set Connecting Client ID
-    client = mqtt_client.Client(CLIENT_ID_MQTT)
-    client.username_pw_set(USERNAME_MQTT, PASSWORD_MQTT)
+    client = mqtt_client.Client(MQTT_CLIENT_ID)
+    client.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
 
     # Security settings, not working
     # client.tls_set(certfile=None,
@@ -42,22 +44,18 @@ def connect_mqtt():
 
     client.on_connect = on_connect
     client.on_disconnect = on_disconnect
-    client.connect(broker_mqtt, port_mqtt)
+    client.connect(mqtt_broker, mqtt_port)
     return client
 
 def connect_kafka_producer():
     try:
-        logging.info("Connecting to Kafka...")
-        config = {
-            'bootstrap.servers': broker_kafka,
-            'client.id': CLIENT_ID_KAFKA
-        }
-        return Producer(config)
+        return KafkaProducer(
+            bootstrap_servers=kafka_broker,
+            # api_version=(0,11,5),
+            value_serializer=lambda x: json.dumps(x).encode('utf-8')
+        )
     except Exception as err:
         logging.error("Failed to connect to Kafka. %s", err)
-def publish_message(producer, topic, key, message):
-    producer.produce(topic, key=key, value=json.dumps(message))
-    producer.flush()
     
 
 def on_disconnect(client, userdata, rc):
@@ -81,18 +79,19 @@ def on_disconnect(client, userdata, rc):
     global FLAG_EXIT
     FLAG_EXIT = True
 
-def subscribe_and_publish(client_mqtt, producer_kafka):
+def subscribe_and_publish(mqtt_client, producer_kafka):
     def on_message(client, userdata, msg):
-        print(f"Recibido `{msg.payload.decode()}` del tópico `{msg.topic}` en MQTT")
+        print(f"Received `{msg.payload.decode()}` from topic `{msg.topic}` in MQTT")
         msg = json.loads(str(msg.payload.decode("utf-8")))
-        msg["user"] = "Albert"
-        logging.info("msg: %s", msg)
-        producer_kafka.send(topic_kafka, value=msg)
+        msg["user"] = Config.USER_NAME
+        logging.info(f'Received MQTT message: {msg}')
+        producer_kafka.send(kafka_topic, value=msg)
+        logging.info(f'Sent Kafka message: {msg}')
 
-    client_mqtt.subscribe(topic_mqtt)
-    client_mqtt.on_message = on_message
-
-
+    for topic in topic_mqtt:
+        mqtt_client.subscribe(topic)
+        logging.info(f'Subscribed to topic {topic}')
+    mqtt_client.on_message = on_message
 
 def save(msg):
     logging.info("Saving sensor data...")
@@ -119,19 +118,14 @@ def save(msg):
 
 
 def run():
-    logging.basicConfig(format='%(asctime)s - %(levelname)s: %(message)s', level=logging.DEBUG)
+    logging.basicConfig(format='%(asctime)s - %(levelname)s: %(message)s', level=logging.INFO)
     
-    client_mqtt = connect_mqtt()
-    my_producer = KafkaProducer(
-        bootstrap_servers=['kafka:9092'],
-        api_version=(0,11,5),
-        value_serializer=lambda x: json.dumps(x).encode('utf-8')
-    )
+    mqtt_client = connect_mqtt()
+    kafka_produce = connect_kafka_producer()
     logging.info("Connected to Kafka!")
-    subscribe_and_publish(client_mqtt, my_producer)
+    subscribe_and_publish(mqtt_client, kafka_produce)
 
-
-    client_mqtt.loop_forever()
+    mqtt_client.loop_forever()
     
 
 if __name__ == '__main__':
