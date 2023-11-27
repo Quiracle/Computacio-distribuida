@@ -1,2 +1,4 @@
 paho-mqtt
 kafka-python===2.0.2
+influxdb-client==1.19.0
+influxdb

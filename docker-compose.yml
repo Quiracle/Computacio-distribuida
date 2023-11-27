@@ -20,10 +20,14 @@ services:
     image: influxdb:latest
     ports:
       - "8086:8086"
-    environment:
-      - INFLUXDB_DB=influxdb
-      - INFLUXDB_ADMIN_USER=admin
-      - INFLUXDB_ADMIN_PASSWORD=pass
+    environment: 
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: admin
+      DOCKER_INFLUXDB_INIT_PASSWORD: password
+      DOCKER_INFLUXDB_INIT_ORG: computacio
+      DOCKER_INFLUXDB_INIT_BUCKET: dades
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: s2d3rf67ren42i0gg666er9
+
     volumes:
       - ./data:/var/lib/influxdb
     networks:
