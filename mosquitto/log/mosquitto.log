@@ -15395,3 +15395,515 @@
 1701108807: Client python-mqtt-124 closed its connection.
 1701108809: mosquitto version 2.0.18 terminating
 1701108809: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1701109717: mosquitto version 2.0.18 starting
+1701109717: Config loaded from /mosquitto/config/mosquitto.conf.
+1701109717: Opening ipv4 listen socket on port 1883.
+1701109717: mosquitto version 2.0.18 running
+1701109718: New connection from 192.168.48.5:60267 on port 1883.
+1701109718: New client connected from 192.168.48.5:60267 as python-mqtt-916 (p2, c1, k60, u'public').
+1701109718: New connection from 192.168.48.6:54937 on port 1883.
+1701109718: New client connected from 192.168.48.6:54937 as python-mqtt-667 (p2, c1, k60, u'public').
+1701109718: New connection from 192.168.48.7:51437 on port 1883.
+1701109718: New client connected from 192.168.48.7:51437 as python-mqtt-419 (p2, c1, k60, u'public').
+1701109718: New connection from 192.168.48.12:48885 on port 1883.
+1701109718: New client connected from 192.168.48.12:48885 as python-mqtt-634 (p2, c1, k60, u'public').
+1701109719: New connection from 192.168.48.14:41937 on port 1883.
+1701109719: New client connected from 192.168.48.14:41937 as python-mqtt-518 (p2, c1, k60, u'public').
+1701109719: New connection from 192.168.48.8:60545 on port 1883.
+1701109719: New client connected from 192.168.48.8:60545 as python-mqtt-333 (p2, c1, k60, u'public').
+1701109927: Client python-mqtt-419 closed its connection.
+1701109937: Client python-mqtt-518 closed its connection.
+1701109937: Client python-mqtt-916 closed its connection.
+1701109937: Client python-mqtt-333 closed its connection.
+1701109937: Client python-mqtt-667 closed its connection.
+1701109937: Client python-mqtt-634 closed its connection.
+1701109939: mosquitto version 2.0.18 terminating
+1701109939: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1701109976: mosquitto version 2.0.18 starting
+1701109976: Config loaded from /mosquitto/config/mosquitto.conf.
+1701109976: Error: Unable to open pwfile "pwd.txt".
+1701109976: Error opening password file "pwd.txt".
+1701110002: mosquitto version 2.0.18 starting
+1701110002: Config loaded from /mosquitto/config/mosquitto.conf.
+1701110002: Error: Unable to open pwfile "./pwd.txt".
+1701110002: Error opening password file "./pwd.txt".
+1701110026: mosquitto version 2.0.18 starting
+1701110026: Config loaded from /mosquitto/config/mosquitto.conf.
+1701110026: Error: Unable to open pwfile "/mosquitto/config/pwd".
+1701110026: Error opening password file "/mosquitto/config/pwd".
+1701110071: mosquitto version 2.0.18 starting
+1701110071: Config loaded from /mosquitto/config/mosquitto.conf.
+1701110071: Error: Unable to open pwfile "/mosquitto/config/pwd".
+1701110071: Error opening password file "/mosquitto/config/pwd".
+1701110137: mosquitto version 2.0.18 starting
+1701110137: Config loaded from /mosquitto/config/mosquitto.conf.
+1701110137: Error: Unable to open pwfile "/mosquitto/config/pwd".
+1701110137: Error opening password file "/mosquitto/config/pwd".
+1701110221: mosquitto version 2.0.18 starting
+1701110221: Config loaded from /mosquitto/config/mosquitto.conf.
+1701110221: Warning: File /mosquitto/config/mosquitto.passwd has world readable permissions. Future versions will refuse to load this file.
+To fix this, use `chmod 0700 /mosquitto/config/mosquitto.passwd`.
+1701110221: Opening ipv4 listen socket on port 1883.
+1701110221: mosquitto version 2.0.18 running
+1701110221: New connection from 192.168.80.6:59051 on port 1883.
+1701110221: Client python-mqtt-315 disconnected, not authorised.
+1701110222: New connection from 192.168.80.7:40161 on port 1883.
+1701110222: Client python-mqtt-580 disconnected, not authorised.
+1701110222: New connection from 192.168.80.8:48575 on port 1883.
+1701110222: Client python-mqtt-349 disconnected, not authorised.
+1701110222: New connection from 192.168.80.9:35501 on port 1883.
+1701110222: Client python-mqtt-923 disconnected, not authorised.
+1701110222: New connection from 192.168.80.13:57245 on port 1883.
+1701110222: Client python-mqtt-531 disconnected, not authorised.
+1701110222: New connection from 192.168.80.6:35937 on port 1883.
+1701110222: New connection from 192.168.80.14:42923 on port 1883.
+1701110222: Client python-mqtt-404 disconnected, not authorised.
+1701110223: New connection from 192.168.80.7:42113 on port 1883.
+1701110223: Client <unknown> closed its connection.
+1701110223: New connection from 192.168.80.8:34083 on port 1883.
+1701110223: New connection from 192.168.80.9:56635 on port 1883.
+1701110223: New connection from 192.168.80.13:43037 on port 1883.
+1701110223: Client <unknown> closed its connection.
+1701110223: Client <unknown> closed its connection.
+1701110223: New connection from 192.168.80.6:57471 on port 1883.
+1701110223: Client python-mqtt-315 disconnected, not authorised.
+1701110224: New connection from 192.168.80.14:50427 on port 1883.
+1701110224: Client python-mqtt-404 disconnected, not authorised.
+1701110224: Client <unknown> closed its connection.
+1701110224: New connection from 192.168.80.8:41667 on port 1883.
+1701110224: Client python-mqtt-349 disconnected, not authorised.
+1701110224: Client <unknown> closed its connection.
+1701110224: New connection from 192.168.80.9:46597 on port 1883.
+1701110224: Client python-mqtt-923 disconnected, not authorised.
+1701110224: New connection from 192.168.80.6:52119 on port 1883.
+1701110225: New connection from 192.168.80.14:39591 on port 1883.
+1701110225: New connection from 192.168.80.8:38173 on port 1883.
+1701110225: New connection from 192.168.80.9:43607 on port 1883.
+1701110226: Client <unknown> closed its connection.
+1701110226: New connection from 192.168.80.14:37985 on port 1883.
+1701110226: Client python-mqtt-404 disconnected, not authorised.
+1701110226: Client <unknown> closed its connection.
+1701110226: New connection from 192.168.80.6:43803 on port 1883.
+1701110226: Client python-mqtt-315 disconnected, not authorised.
+1701110227: New connection from 192.168.80.14:41787 on port 1883.
+1701110227: Client <unknown> closed its connection.
+1701110227: New connection from 192.168.80.8:55413 on port 1883.
+1701110227: Client python-mqtt-349 disconnected, not authorised.
+1701110227: Client <unknown> closed its connection.
+1701110227: New connection from 192.168.80.9:57901 on port 1883.
+1701110227: Client python-mqtt-923 disconnected, not authorised.
+1701110227: New connection from 192.168.80.6:55977 on port 1883.
+1701110228: New connection from 192.168.80.8:47799 on port 1883.
+1701110228: New connection from 192.168.80.9:39585 on port 1883.
+1701110229: Client <unknown> closed its connection.
+1701110229: New connection from 192.168.80.14:44799 on port 1883.
+1701110229: Client python-mqtt-404 disconnected, not authorised.
+1701110230: New connection from 192.168.80.14:47071 on port 1883.
+1701110231: Client <unknown> closed its connection.
+1701110231: New connection from 192.168.80.6:53633 on port 1883.
+1701110231: Client python-mqtt-315 disconnected, not authorised.
+1701110232: Client <unknown> closed its connection.
+1701110232: New connection from 192.168.80.8:60295 on port 1883.
+1701110232: Client python-mqtt-349 disconnected, not authorised.
+1701110232: Client <unknown> closed its connection.
+1701110232: New connection from 192.168.80.9:53891 on port 1883.
+1701110232: Client python-mqtt-923 disconnected, not authorised.
+1701110232: New connection from 192.168.80.6:48885 on port 1883.
+1701110233: New connection from 192.168.80.8:42839 on port 1883.
+1701110233: New connection from 192.168.80.9:51575 on port 1883.
+1701110234: Client <unknown> closed its connection.
+1701110234: New connection from 192.168.80.14:42681 on port 1883.
+1701110234: Client python-mqtt-404 disconnected, not authorised.
+1701110235: New connection from 192.168.80.14:51255 on port 1883.
+1701110240: Client <unknown> closed its connection.
+1701110240: New connection from 192.168.80.6:45369 on port 1883.
+1701110240: Client python-mqtt-315 disconnected, not authorised.
+1701110241: Client <unknown> closed its connection.
+1701110241: New connection from 192.168.80.8:46307 on port 1883.
+1701110241: Client python-mqtt-349 disconnected, not authorised.
+1701110241: Client <unknown> closed its connection.
+1701110241: New connection from 192.168.80.9:35685 on port 1883.
+1701110241: Client python-mqtt-923 disconnected, not authorised.
+1701110241: New connection from 192.168.80.6:33603 on port 1883.
+1701110242: New connection from 192.168.80.8:39729 on port 1883.
+1701110242: New connection from 192.168.80.9:56385 on port 1883.
+1701110243: Client <unknown> closed its connection.
+1701110243: New connection from 192.168.80.14:50363 on port 1883.
+1701110243: Client python-mqtt-404 disconnected, not authorised.
+1701110244: New connection from 192.168.80.14:34589 on port 1883.
+1701110257: Client <unknown> closed its connection.
+1701110257: New connection from 192.168.80.6:58461 on port 1883.
+1701110257: Client python-mqtt-315 disconnected, not authorised.
+1701110258: Client <unknown> closed its connection.
+1701110258: New connection from 192.168.80.8:60649 on port 1883.
+1701110258: Client python-mqtt-349 disconnected, not authorised.
+1701110258: Client <unknown> closed its connection.
+1701110258: New connection from 192.168.80.9:56865 on port 1883.
+1701110258: Client python-mqtt-923 disconnected, not authorised.
+1701110258: New connection from 192.168.80.6:46617 on port 1883.
+1701110259: New connection from 192.168.80.8:56969 on port 1883.
+1701110259: New connection from 192.168.80.9:41577 on port 1883.
+1701110260: Client <unknown> closed its connection.
+1701110260: New connection from 192.168.80.14:49831 on port 1883.
+1701110260: Client python-mqtt-404 disconnected, not authorised.
+1701110261: New connection from 192.168.80.14:56377 on port 1883.
+1701110290: Client <unknown> closed its connection.
+1701110290: New connection from 192.168.80.6:36355 on port 1883.
+1701110290: Client python-mqtt-315 disconnected, not authorised.
+1701110291: Client <unknown> closed its connection.
+1701110291: New connection from 192.168.80.8:34555 on port 1883.
+1701110291: Client python-mqtt-349 disconnected, not authorised.
+1701110291: Client <unknown> closed its connection.
+1701110291: New connection from 192.168.80.9:38329 on port 1883.
+1701110291: Client python-mqtt-923 disconnected, not authorised.
+1701110291: New connection from 192.168.80.6:35015 on port 1883.
+1701110292: New connection from 192.168.80.8:34111 on port 1883.
+1701110292: New connection from 192.168.80.9:53989 on port 1883.
+1701110293: Client <unknown> closed its connection.
+1701110293: New connection from 192.168.80.14:40509 on port 1883.
+1701110293: Client python-mqtt-404 disconnected, not authorised.
+1701110294: New connection from 192.168.80.14:54131 on port 1883.
+1701110355: Client <unknown> closed its connection.
+1701110355: New connection from 192.168.80.6:44777 on port 1883.
+1701110355: Client python-mqtt-315 disconnected, not authorised.
+1701110356: Client <unknown> closed its connection.
+1701110356: New connection from 192.168.80.8:40627 on port 1883.
+1701110356: Client python-mqtt-349 disconnected, not authorised.
+1701110356: Client <unknown> closed its connection.
+1701110356: New connection from 192.168.80.9:43601 on port 1883.
+1701110356: Client python-mqtt-923 disconnected, not authorised.
+1701110356: New connection from 192.168.80.6:41559 on port 1883.
+1701110357: New connection from 192.168.80.8:40947 on port 1883.
+1701110357: New connection from 192.168.80.9:45933 on port 1883.
+1701110358: Client <unknown> closed its connection.
+1701110358: New connection from 192.168.80.14:42695 on port 1883.
+1701110358: Client python-mqtt-404 disconnected, not authorised.
+1701110359: New connection from 192.168.80.14:49611 on port 1883.
+1701110379: Client <unknown> closed its connection.
+1701110389: Client <unknown> closed its connection.
+1701110389: Client <unknown> closed its connection.
+1701110389: Client <unknown> closed its connection.
+1701110390: New connection from 192.168.80.6:45065 on port 1883.
+1701110390: Client python-mqtt-626 disconnected, not authorised.
+1701110391: New connection from 192.168.80.7:37935 on port 1883.
+1701110391: Client python-mqtt-881 disconnected, not authorised.
+1701110391: New connection from 192.168.80.8:33461 on port 1883.
+1701110391: Client python-mqtt-60 disconnected, not authorised.
+1701110391: New connection from 192.168.80.9:35255 on port 1883.
+1701110391: Client python-mqtt-828 disconnected, not authorised.
+1701110391: New connection from 192.168.80.6:37145 on port 1883.
+1701110391: Client <unknown> closed its connection.
+1701110391: New connection from 192.168.80.10:56741 on port 1883.
+1701110391: Client python-mqtt-31 disconnected, not authorised.
+1701110392: New connection from 192.168.80.7:40269 on port 1883.
+1701110392: New connection from 192.168.80.8:34103 on port 1883.
+1701110392: Client <unknown> closed its connection.
+1701110392: New connection from 192.168.80.9:52703 on port 1883.
+1701110392: New connection from 192.168.80.14:48921 on port 1883.
+1701110392: Client python-mqtt-120 disconnected, not authorised.
+1701110392: New connection from 192.168.80.10:37085 on port 1883.
+1701110393: Client <unknown> closed its connection.
+1701110393: New connection from 192.168.80.7:43031 on port 1883.
+1701110393: Client python-mqtt-881 disconnected, not authorised.
+1701110393: Client <unknown> closed its connection.
+1701110393: New connection from 192.168.80.9:34165 on port 1883.
+1701110393: Client python-mqtt-828 disconnected, not authorised.
+1701110393: New connection from 192.168.80.14:36603 on port 1883.
+1701110393: Client python-mqtt-120 disconnected, not authorised.
+1701110393: Client <unknown> closed its connection.
+1701110393: New connection from 192.168.80.10:51751 on port 1883.
+1701110393: Client python-mqtt-31 disconnected, not authorised.
+1701110394: New connection from 192.168.80.7:44517 on port 1883.
+1701110394: New connection from 192.168.80.9:47717 on port 1883.
+1701110394: New connection from 192.168.80.14:55587 on port 1883.
+1701110394: New connection from 192.168.80.10:47065 on port 1883.
+1701110395: Client <unknown> closed its connection.
+1701110395: New connection from 192.168.80.14:47617 on port 1883.
+1701110395: Client python-mqtt-120 disconnected, not authorised.
+1701110396: Client <unknown> closed its connection.
+1701110396: New connection from 192.168.80.7:49869 on port 1883.
+1701110396: Client python-mqtt-881 disconnected, not authorised.
+1701110396: Client <unknown> closed its connection.
+1701110396: New connection from 192.168.80.9:56963 on port 1883.
+1701110396: Client python-mqtt-828 disconnected, not authorised.
+1701110396: New connection from 192.168.80.14:53859 on port 1883.
+1701110396: Client <unknown> closed its connection.
+1701110396: New connection from 192.168.80.10:60085 on port 1883.
+1701110396: Client python-mqtt-31 disconnected, not authorised.
+1701110397: New connection from 192.168.80.7:35053 on port 1883.
+1701110397: New connection from 192.168.80.9:42687 on port 1883.
+1701110397: New connection from 192.168.80.10:48781 on port 1883.
+1701110398: Client <unknown> closed its connection.
+1701110398: New connection from 192.168.80.14:47873 on port 1883.
+1701110398: Client python-mqtt-120 disconnected, not authorised.
+1701110399: New connection from 192.168.80.14:48989 on port 1883.
+1701110400: New connection from 192.168.80.6:34881 on port 1883.
+1701110400: Client python-mqtt-563 disconnected, not authorised.
+1701110401: New connection from 192.168.80.6:56289 on port 1883.
+1701110401: Client <unknown> closed its connection.
+1701110401: Client <unknown> closed its connection.
+1701110401: New connection from 192.168.80.7:41795 on port 1883.
+1701110401: Client python-mqtt-881 disconnected, not authorised.
+1701110401: Client <unknown> closed its connection.
+1701110401: New connection from 192.168.80.9:56379 on port 1883.
+1701110401: Client python-mqtt-828 disconnected, not authorised.
+1701110401: Client <unknown> closed its connection.
+1701110401: New connection from 192.168.80.10:35077 on port 1883.
+1701110401: Client python-mqtt-31 disconnected, not authorised.
+1701110402: New connection from 192.168.80.7:45019 on port 1883.
+1701110402: New connection from 192.168.80.9:36819 on port 1883.
+1701110402: New connection from 192.168.80.10:50673 on port 1883.
+1701110403: Client <unknown> closed its connection.
+1701110403: New connection from 192.168.80.14:34253 on port 1883.
+1701110403: Client python-mqtt-120 disconnected, not authorised.
+1701110404: New connection from 192.168.80.14:46923 on port 1883.
+1701110410: Client <unknown> closed its connection.
+1701110410: New connection from 192.168.80.7:54471 on port 1883.
+1701110410: Client python-mqtt-881 disconnected, not authorised.
+1701110410: Client <unknown> closed its connection.
+1701110410: New connection from 192.168.80.9:46167 on port 1883.
+1701110410: Client python-mqtt-828 disconnected, not authorised.
+1701110410: Client <unknown> closed its connection.
+1701110410: New connection from 192.168.80.10:50223 on port 1883.
+1701110410: Client python-mqtt-31 disconnected, not authorised.
+1701110411: New connection from 192.168.80.7:35437 on port 1883.
+1701110411: New connection from 192.168.80.9:44525 on port 1883.
+1701110411: New connection from 192.168.80.10:41365 on port 1883.
+1701110412: Client <unknown> closed its connection.
+1701110412: New connection from 192.168.80.14:39525 on port 1883.
+1701110412: Client python-mqtt-120 disconnected, not authorised.
+1701110413: New connection from 192.168.80.14:50367 on port 1883.
+1701110427: Client <unknown> closed its connection.
+1701110427: New connection from 192.168.80.7:32819 on port 1883.
+1701110427: Client python-mqtt-881 disconnected, not authorised.
+1701110427: Client <unknown> closed its connection.
+1701110427: New connection from 192.168.80.9:47505 on port 1883.
+1701110427: Client python-mqtt-828 disconnected, not authorised.
+1701110427: Client <unknown> closed its connection.
+1701110427: New connection from 192.168.80.10:46121 on port 1883.
+1701110427: Client python-mqtt-31 disconnected, not authorised.
+1701110428: New connection from 192.168.80.7:59697 on port 1883.
+1701110428: New connection from 192.168.80.10:42719 on port 1883.
+1701110429: Client <unknown> closed its connection.
+1701110429: New connection from 192.168.80.14:51305 on port 1883.
+1701110429: Client python-mqtt-120 disconnected, not authorised.
+1701110430: New connection from 192.168.80.14:55957 on port 1883.
+1701110437: Client <unknown> closed its connection.
+1701110437: Client <unknown> closed its connection.
+1701110437: Client <unknown> closed its connection.
+1701110439: mosquitto version 2.0.18 terminating
+1701110439: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1701110469: mosquitto version 2.0.18 starting
+1701110469: Config loaded from /mosquitto/config/mosquitto.conf.
+1701110469: Warning: File /mosquitto/config/mosquitto.passwd has world readable permissions. Future versions will refuse to load this file.
+To fix this, use `chmod 0700 /mosquitto/config/mosquitto.passwd`.
+1701110469: Opening ipv4 listen socket on port 1883.
+1701110469: mosquitto version 2.0.18 running
+1701110469: New connection from 192.168.96.5:39141 on port 1883.
+1701110469: Client python-mqtt-583 disconnected, not authorised.
+1701110470: New connection from 192.168.96.6:35721 on port 1883.
+1701110470: Client python-mqtt-397 disconnected, not authorised.
+1701110470: New connection from 192.168.96.8:38001 on port 1883.
+1701110470: Client python-mqtt-828 disconnected, not authorised.
+1701110470: New connection from 192.168.96.9:40457 on port 1883.
+1701110470: Client python-mqtt-805 disconnected, not authorised.
+1701110470: New connection from 192.168.96.7:49355 on port 1883.
+1701110470: Client python-mqtt-542 disconnected, not authorised.
+1701110471: New connection from 192.168.96.5:42431 on port 1883.
+1701110471: Client <unknown> closed its connection.
+1701110471: New connection from 192.168.96.6:37369 on port 1883.
+1701110471: Client <unknown> closed its connection.
+1701110471: New connection from 192.168.96.8:54633 on port 1883.
+1701110471: New connection from 192.168.96.9:44437 on port 1883.
+1701110471: New connection from 192.168.96.7:50853 on port 1883.
+1701110472: Client <unknown> closed its connection.
+1701110472: New connection from 192.168.96.8:56087 on port 1883.
+1701110472: Client python-mqtt-828 disconnected, not authorised.
+1701110472: Client <unknown> closed its connection.
+1701110472: New connection from 192.168.96.9:43129 on port 1883.
+1701110472: Client python-mqtt-805 disconnected, not authorised.
+1701110472: Client <unknown> closed its connection.
+1701110472: New connection from 192.168.96.7:60119 on port 1883.
+1701110472: Client python-mqtt-542 disconnected, not authorised.
+1701110473: New connection from 192.168.96.8:55063 on port 1883.
+1701110473: New connection from 192.168.96.9:39897 on port 1883.
+1701110473: New connection from 192.168.96.7:57629 on port 1883.
+1701110475: Client <unknown> closed its connection.
+1701110475: New connection from 192.168.96.8:35323 on port 1883.
+1701110475: Client python-mqtt-828 disconnected, not authorised.
+1701110475: Client <unknown> closed its connection.
+1701110475: New connection from 192.168.96.9:49739 on port 1883.
+1701110475: Client python-mqtt-805 disconnected, not authorised.
+1701110475: Client <unknown> closed its connection.
+1701110475: New connection from 192.168.96.7:45991 on port 1883.
+1701110475: Client python-mqtt-542 disconnected, not authorised.
+1701110475: New connection from 192.168.96.11:49641 on port 1883.
+1701110475: Client python-mqtt-79 disconnected, not authorised.
+1701110476: New connection from 192.168.96.8:46859 on port 1883.
+1701110476: New connection from 192.168.96.9:55391 on port 1883.
+1701110476: New connection from 192.168.96.7:48371 on port 1883.
+1701110476: New connection from 192.168.96.11:51129 on port 1883.
+1701110476: Client python-mqtt-79 disconnected, not authorised.
+1701110477: New connection from 192.168.96.11:45965 on port 1883.
+1701110478: Client <unknown> closed its connection.
+1701110478: New connection from 192.168.96.11:45033 on port 1883.
+1701110478: Client python-mqtt-79 disconnected, not authorised.
+1701110479: New connection from 192.168.96.11:43159 on port 1883.
+1701110480: Client <unknown> closed its connection.
+1701110480: New connection from 192.168.96.8:33871 on port 1883.
+1701110480: Client python-mqtt-828 disconnected, not authorised.
+1701110480: Client <unknown> closed its connection.
+1701110480: New connection from 192.168.96.9:52225 on port 1883.
+1701110480: Client python-mqtt-805 disconnected, not authorised.
+1701110480: Client <unknown> closed its connection.
+1701110480: New connection from 192.168.96.7:57057 on port 1883.
+1701110480: Client python-mqtt-542 disconnected, not authorised.
+1701110481: New connection from 192.168.96.8:44823 on port 1883.
+1701110481: New connection from 192.168.96.9:46045 on port 1883.
+1701110481: New connection from 192.168.96.7:33339 on port 1883.
+1701110481: Client <unknown> closed its connection.
+1701110481: New connection from 192.168.96.11:34783 on port 1883.
+1701110481: Client python-mqtt-79 disconnected, not authorised.
+1701110482: New connection from 192.168.96.11:51205 on port 1883.
+1701110486: Client <unknown> closed its connection.
+1701110486: New connection from 192.168.96.11:46589 on port 1883.
+1701110486: Client python-mqtt-79 disconnected, not authorised.
+1701110487: New connection from 192.168.96.11:43145 on port 1883.
+1701110489: Client <unknown> closed its connection.
+1701110489: New connection from 192.168.96.8:55793 on port 1883.
+1701110489: Client python-mqtt-828 disconnected, not authorised.
+1701110489: Client <unknown> closed its connection.
+1701110489: New connection from 192.168.96.9:60761 on port 1883.
+1701110489: Client python-mqtt-805 disconnected, not authorised.
+1701110489: Client <unknown> closed its connection.
+1701110489: New connection from 192.168.96.7:43667 on port 1883.
+1701110489: Client python-mqtt-542 disconnected, not authorised.
+1701110490: New connection from 192.168.96.8:42377 on port 1883.
+1701110490: New connection from 192.168.96.9:51359 on port 1883.
+1701110490: New connection from 192.168.96.7:48925 on port 1883.
+1701110495: Client <unknown> closed its connection.
+1701110495: New connection from 192.168.96.11:40669 on port 1883.
+1701110495: Client python-mqtt-79 disconnected, not authorised.
+1701110496: New connection from 192.168.96.11:59731 on port 1883.
+1701110506: Client <unknown> closed its connection.
+1701110506: New connection from 192.168.96.8:53843 on port 1883.
+1701110506: Client python-mqtt-828 disconnected, not authorised.
+1701110506: Client <unknown> closed its connection.
+1701110506: New connection from 192.168.96.9:55363 on port 1883.
+1701110506: Client python-mqtt-805 disconnected, not authorised.
+1701110506: Client <unknown> closed its connection.
+1701110506: New connection from 192.168.96.7:53481 on port 1883.
+1701110506: Client python-mqtt-542 disconnected, not authorised.
+1701110507: New connection from 192.168.96.8:52267 on port 1883.
+1701110507: New connection from 192.168.96.9:48539 on port 1883.
+1701110507: New connection from 192.168.96.7:35869 on port 1883.
+1701110512: Client <unknown> closed its connection.
+1701110512: New connection from 192.168.96.11:48931 on port 1883.
+1701110512: Client python-mqtt-79 disconnected, not authorised.
+1701110513: New connection from 192.168.96.11:34587 on port 1883.
+1701110539: Client <unknown> closed its connection.
+1701110539: New connection from 192.168.96.8:48483 on port 1883.
+1701110539: Client python-mqtt-828 disconnected, not authorised.
+1701110539: Client <unknown> closed its connection.
+1701110539: New connection from 192.168.96.9:49387 on port 1883.
+1701110539: Client python-mqtt-805 disconnected, not authorised.
+1701110539: Client <unknown> closed its connection.
+1701110539: New connection from 192.168.96.7:53371 on port 1883.
+1701110539: Client python-mqtt-542 disconnected, not authorised.
+1701110540: New connection from 192.168.96.8:37633 on port 1883.
+1701110540: New connection from 192.168.96.9:52741 on port 1883.
+1701110540: New connection from 192.168.96.7:37367 on port 1883.
+1701110541: New connection from 192.168.96.13:38417 on port 1883.
+1701110541: New connection from 192.168.96.14:57993 on port 1883.
+1701110541: Client python-mqtt-923 disconnected, not authorised.
+1701110541: Client python-mqtt-661 disconnected, not authorised.
+1701110542: New connection from 192.168.96.13:43765 on port 1883.
+1701110542: New connection from 192.168.96.14:58965 on port 1883.
+1701110542: Client <unknown> closed its connection.
+1701110542: Client <unknown> closed its connection.
+1701110545: Client <unknown> closed its connection.
+1701110545: New connection from 192.168.96.11:52095 on port 1883.
+1701110545: Client python-mqtt-79 disconnected, not authorised.
+1701110546: New connection from 192.168.96.11:53947 on port 1883.
+1701110552: New connection from 192.168.96.13:60109 on port 1883.
+1701110552: Client python-mqtt-398 disconnected, not authorised.
+1701110553: New connection from 192.168.96.13:59783 on port 1883.
+1701110553: Client <unknown> closed its connection.
+1701110604: Client <unknown> closed its connection.
+1701110604: New connection from 192.168.96.8:40429 on port 1883.
+1701110604: Client python-mqtt-828 disconnected, not authorised.
+1701110604: Client <unknown> closed its connection.
+1701110604: New connection from 192.168.96.9:43953 on port 1883.
+1701110604: Client python-mqtt-805 disconnected, not authorised.
+1701110604: Client <unknown> closed its connection.
+1701110604: New connection from 192.168.96.7:36913 on port 1883.
+1701110604: Client python-mqtt-542 disconnected, not authorised.
+1701110605: New connection from 192.168.96.8:60663 on port 1883.
+1701110605: New connection from 192.168.96.9:35719 on port 1883.
+1701110605: New connection from 192.168.96.7:57235 on port 1883.
+1701110610: Client <unknown> closed its connection.
+1701110610: New connection from 192.168.96.11:44497 on port 1883.
+1701110610: Client python-mqtt-79 disconnected, not authorised.
+1701110611: New connection from 192.168.96.11:37367 on port 1883.
+1701110697: Client <unknown> has exceeded timeout, disconnecting.
+1701110697: Client <unknown> has exceeded timeout, disconnecting.
+1701110697: Client <unknown> has exceeded timeout, disconnecting.
+1701110703: Client <unknown> has exceeded timeout, disconnecting.
+1701110725: New connection from 192.168.96.8:35067 on port 1883.
+1701110725: Client python-mqtt-828 disconnected, not authorised.
+1701110725: New connection from 192.168.96.9:59999 on port 1883.
+1701110725: Client python-mqtt-805 disconnected, not authorised.
+1701110725: New connection from 192.168.96.7:50821 on port 1883.
+1701110725: Client python-mqtt-542 disconnected, not authorised.
+1701110726: New connection from 192.168.96.8:46735 on port 1883.
+1701110726: New connection from 192.168.96.9:35949 on port 1883.
+1701110726: New connection from 192.168.96.7:57663 on port 1883.
+1701110731: New connection from 192.168.96.11:44759 on port 1883.
+1701110731: Client python-mqtt-79 disconnected, not authorised.
+1701110732: New connection from 192.168.96.11:57283 on port 1883.
+1701110778: Client <unknown> closed its connection.
+1701110788: Client <unknown> closed its connection.
+1701110788: Client <unknown> closed its connection.
+1701110788: Client <unknown> closed its connection.
+1701110790: mosquitto version 2.0.18 terminating
+1701110790: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1701110838: mosquitto version 2.0.18 starting
+1701110838: Config loaded from /mosquitto/config/mosquitto.conf.
+1701110838: Opening ipv4 listen socket on port 1883.
+1701110838: mosquitto version 2.0.18 running
+1701110838: New connection from 192.168.112.5:60969 on port 1883.
+1701110838: New client connected from 192.168.112.5:60969 as python-mqtt-501 (p2, c1, k60, u'albert').
+1701110838: New connection from 192.168.112.6:55217 on port 1883.
+1701110838: New client connected from 192.168.112.6:55217 as python-mqtt-966 (p2, c1, k60, u'albert').
+1701110839: New connection from 192.168.112.7:36307 on port 1883.
+1701110839: New client connected from 192.168.112.7:36307 as python-mqtt-575 (p2, c1, k60, u'albert').
+1701110839: New connection from 192.168.112.9:48349 on port 1883.
+1701110839: New client connected from 192.168.112.9:48349 as python-mqtt-707 (p2, c1, k60, u'albert').
+1701110839: New connection from 192.168.112.8:43437 on port 1883.
+1701110839: New client connected from 192.168.112.8:43437 as python-mqtt-890 (p2, c1, k60, u'albert').
+1701110843: New connection from 192.168.112.14:44399 on port 1883.
+1701110843: New client connected from 192.168.112.14:44399 as python-mqtt-862 (p2, c1, k60, u'albert').
+1701110920: Client python-mqtt-966 closed its connection.
+1701110921: New connection from 192.168.112.6:37967 on port 1883.
+1701110921: Client python-mqtt-505 disconnected, not authorised.
+1701110922: New connection from 192.168.112.6:44785 on port 1883.
+1701110923: Client <unknown> closed its connection.
+1701110923: New connection from 192.168.112.6:48579 on port 1883.
+1701110923: Client python-mqtt-505 disconnected, not authorised.
+1701110924: New connection from 192.168.112.6:47513 on port 1883.
+1701110926: Client <unknown> closed its connection.
+1701110926: New connection from 192.168.112.6:52581 on port 1883.
+1701110926: Client python-mqtt-505 disconnected, not authorised.
+1701110927: New connection from 192.168.112.6:37021 on port 1883.
+1701110931: Client <unknown> closed its connection.
+1701110931: New connection from 192.168.112.6:35229 on port 1883.
+1701110931: Client python-mqtt-505 disconnected, not authorised.
+1701110932: New connection from 192.168.112.6:34663 on port 1883.
+1701110940: Client <unknown> closed its connection.
+1701110940: New connection from 192.168.112.6:39873 on port 1883.
+1701110940: Client python-mqtt-505 disconnected, not authorised.
+1701110941: New connection from 192.168.112.6:39381 on port 1883.
+1701110957: Client <unknown> closed its connection.
+1701110957: New connection from 192.168.112.6:38419 on port 1883.
+1701110957: Client python-mqtt-505 disconnected, not authorised.
+1701110958: New connection from 192.168.112.6:56433 on port 1883.

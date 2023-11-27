@@ -95,7 +95,7 @@ def subscribe(client: mqtt_client):
         global previous_state
         logging.info(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
         msg = json.loads(str(msg.payload.decode("utf-8")))
-        if msg["device"] == "heat_pump" and msg["value"] != current_state:
+        if msg["device"] == Config.DEVICE_NAME and msg["value"] != current_state:
             previous_state = current_state
             current_state = msg["value"]
             logging.info(f"Changed state from: {previous_state} to: {current_state}")
