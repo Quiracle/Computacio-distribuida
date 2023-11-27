@@ -6,11 +6,18 @@ import random
 from datetime import datetime
 import pytz
 import os
+import Config
+
+STATES = Config.POSSIBLE_STATES
+
+CURRENT_STATE = random.choice(STATES)
+PREVIOUS_STATE = CURRENT_STATE
 
 broker = os.environ.get('MQTT_BROKER', 'mosquitto')
 port = int(os.environ.get('MQTT_PORT', 1883))
-mqtt_topic = 'actuators/heat_pump'
-CLIENT_ID = f'python-mqtt-{random.randint(0, 1000)}'
+mqtt_topic_send = Config.MQTT_TOPIC_SEND
+mqtt_topic_receive = Config.MQTT_TOPIC_RECEIVE
+CLIENT_ID = Config.CLIENT_ID
 
 USERNAME = os.environ.get('MQTT_USERNAME', 'public')
 PASSWORD = os.environ.get('MQTT_PASSWORD', 'public')
@@ -58,58 +65,54 @@ def on_disconnect(client, userdata, rc):
     global FLAG_EXIT
     FLAG_EXIT = True
 
-routes=[[1,3,7],[1,3,1],[1,3,5]]
-
-{
-    "v0":[{"street":1,"duration":5},{"street":3,"duration":10},{"street":7,"duration":10}]
-}
 def publish(client):
-    msg_count = 1
-    while not FLAG_EXIT:
-        t = time.localtime()
-        #Define message to publish
-        current_time = str(datetime.now(pytz.timezone("Europe/Gibraltar")).strftime("%Y-%m-%d %H:%M:%S"))
+    t = time.localtime()
+    #Define message to publish
+    current_time = str(datetime.now(pytz.timezone("Europe/Gibraltar")).strftime("%Y-%m-%d %H:%M:%S"))
 
-        msg_dict = {
-            "timestamp": current_time,
-            "value": random.randint(15,30),
-            "dispositive": "heat_pump",
-        }
-        
-        if not client.is_connected():
-            logging.error("publish: MQTT client is not connected!")
-            time.sleep(1)
-            continue
+    msg_dict = {
+        "timestamp": current_time,
+        "value": CURRENT_STATE,
+        "device": Config.DEVICE_NAME,
+    }
+    
+    if not client.is_connected():
+        logging.error("publish: MQTT client is not connected!")
         time.sleep(1)
-        msg = json.dumps(msg_dict)
-        result = client.publish(mqtt_topic, msg)
-        # result: [0, 1]
-        status = result[0]
-        if status == 0:
-            logging.info(f"Send `{msg}` to topic `{mqtt_topic}`")
-        else:
-            logging.error(f"Failed to send message to topic {mqtt_topic}")
-        msg_count += 1
+        return
+    msg = json.dumps(msg_dict)
+    result = client.publish(mqtt_topic_send, msg)
+    # result: [0, 1]
+    status = result[0]
+    if status == 0:
+        logging.info(f"Send `{msg}` to topic `{mqtt_topic_send}`")
+    else:
+        logging.error(f"Failed to send message to topic {mqtt_topic_send}")
 
 def subscribe(client: mqtt_client):
     def on_message(client, userdata, msg):
         logging.info(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
         msg = json.loads(str(msg.payload.decode("utf-8")))
-    # client.subscribe(mqtt_topic)
+        if msg["device"] == "heat_pump" and msg["value"] in STATES:
+            global CURRENT_STATE
+            global PREVIOUS_STATE
+            PREVIOUS_STATE = CURRENT_STATE
+            CURRENT_STATE = msg["value"]
+            logging.info(f"Changed state from: {PREVIOUS_STATE} to: {CURRENT_STATE}")
+            publish(client)
+    client.subscribe(mqtt_topic_receive)
     client.on_message = on_message
 
 
 def run():
     logging.basicConfig(format='%(asctime)s - %(levelname)s: %(message)s',
                         level=logging.DEBUG)
-    client = connect_mqtt()
-    subscribe(client)
-    client.loop_start() 
+    mqtt_client = connect_mqtt()
+    subscribe(mqtt_client)
+    mqtt_client.loop_start() 
     time.sleep(1)
-    if client.is_connected():
-        publish(client)
-    else:
-        client.loop_stop()
+
+    mqtt_client.loop_forever()
 
 
 if __name__ == '__main__':
