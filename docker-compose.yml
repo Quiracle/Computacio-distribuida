@@ -91,8 +91,8 @@ services:
     build: ./microservices/actuate_microservice
     command: python3 ./actuate.py
     environment:
-      - MQTT_USERNAME=public
-      - MQTT_PASSWORD=public
+      - MQTT_USERNAME=albert
+      - MQTT_PASSWORD=contrasenyasupersecreta
       - KAFKA_BROKER=kafka:9092
     networks:
       - bridge
@@ -109,8 +109,8 @@ services:
     environment:
       - MQTT_BROKER=mosquitto
       - MQTT_PORT=1883
-      - MQTT_USERNAME=public
-      - MQTT_PASSWORD=public
+      - MQTT_USERNAME=albert
+      - MQTT_PASSWORD=contrasenyasupersecreta
     networks:
       - bridge
     ports:
@@ -126,8 +126,8 @@ services:
     environment:
       - MQTT_BROKER=mosquitto
       - MQTT_PORT=1883
-      - MQTT_USERNAME=public
-      - MQTT_PASSWORD=public
+      - MQTT_USERNAME=albert
+      - MQTT_PASSWORD=contrasenyasupersecreta
       - KAFKA_BROKER=kafka:9092
     networks:
       - bridge
@@ -144,8 +144,8 @@ services:
     environment:
       - MQTT_BROKER=mosquitto
       - MQTT_PORT=1883
-      - MQTT_USERNAME=public
-      - MQTT_PASSWORD=public
+      - MQTT_USERNAME=albert
+      - MQTT_PASSWORD=contrasenyasupersecreta
     networks:
       - bridge
     depends_on:
@@ -159,8 +159,8 @@ services:
     environment:
       - MQTT_BROKER=mosquitto
       - MQTT_PORT=1883
-      - MQTT_USERNAME=public
-      - MQTT_PASSWORD=public
+      - MQTT_USERNAME=albert
+      - MQTT_PASSWORD=contrasenyasupersecreta
     networks:
       - bridge
     depends_on:
@@ -174,8 +174,8 @@ services:
     environment:
       - MQTT_BROKER=mosquitto
       - MQTT_PORT=1883
-      - MQTT_USERNAME=public
-      - MQTT_PASSWORD=public
+      - MQTT_USERNAME=albert
+      - MQTT_PASSWORD=contrasenyasupersecreta
     networks:
       - bridge
     depends_on:
@@ -189,8 +189,8 @@ services:
     environment:
       - MQTT_BROKER=mosquitto
       - MQTT_PORT=1883
-      - MQTT_USERNAME=public
-      - MQTT_PASSWORD=public
+      - MQTT_USERNAME=albert
+      - MQTT_PASSWORD=contrasenyasupersecreta
     networks:
       - bridge
     depends_on:
