@@ -10,8 +10,8 @@ import Config
 
 STATES = Config.POSSIBLE_STATES
 
-CURRENT_STATE = random.choice(STATES)
-PREVIOUS_STATE = CURRENT_STATE
+current_state = random.choice(STATES)
+previous_state = current_state
 
 broker = os.environ.get('MQTT_BROKER', 'mosquitto')
 port = int(os.environ.get('MQTT_PORT', 1883))
@@ -72,7 +72,7 @@ def publish(client):
 
     msg_dict = {
         "timestamp": current_time,
-        "value": CURRENT_STATE,
+        "value": current_state,
         "device": Config.DEVICE_NAME,
     }
     
@@ -91,16 +91,17 @@ def publish(client):
 
 def subscribe(client: mqtt_client):
     def on_message(client, userdata, msg):
+        global current_state
+        global previous_state
         logging.info(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
         msg = json.loads(str(msg.payload.decode("utf-8")))
-        if msg["device"] == "heat_pump" and msg["value"] in STATES:
-            global CURRENT_STATE
-            global PREVIOUS_STATE
-            PREVIOUS_STATE = CURRENT_STATE
-            CURRENT_STATE = msg["value"]
-            logging.info(f"Changed state from: {PREVIOUS_STATE} to: {CURRENT_STATE}")
+        if msg["device"] == "heat_pump" and msg["value"] != current_state:
+            previous_state = current_state
+            current_state = msg["value"]
+            logging.info(f"Changed state from: {previous_state} to: {current_state}")
             publish(client)
     client.subscribe(mqtt_topic_receive)
+    logging.info(f'Subscribed to topic {mqtt_topic_receive}')
     client.on_message = on_message
 
 
@@ -109,8 +110,6 @@ def run():
                         level=logging.DEBUG)
     mqtt_client = connect_mqtt()
     subscribe(mqtt_client)
-    mqtt_client.loop_start() 
-    time.sleep(1)
 
     mqtt_client.loop_forever()
 

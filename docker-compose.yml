@@ -61,8 +61,63 @@ services:
       retries: 15
     networks:
       - bridge
-  
 
+  save_microservice:
+    container_name: save_microservice
+    build: ./microservices/save_microservice
+    command: python3 ./save.py
+    environment:
+      - KAFKA_BROKER=kafka:9092
+    networks:
+      - bridge
+    depends_on:
+      kafka:
+        condition: service_healthy
+
+  clean_microservice:
+    container_name: clean_microservice
+    build: ./microservices/clean_microservice
+    command: python3 ./clean.py
+    environment:
+      - KAFKA_BROKER=kafka:9092
+    networks:
+      - bridge
+    depends_on:
+      kafka:
+        condition: service_healthy
+
+  actuate_microservice:
+    container_name: actuate_microservice
+    build: ./microservices/actuate_microservice
+    command: python3 ./actuate.py
+    environment:
+      - MQTT_USERNAME=public
+      - MQTT_PASSWORD=public
+      - KAFKA_BROKER=kafka:9092
+    networks:
+      - bridge
+    depends_on:
+      kafka:
+        condition: service_healthy
+      mosquitto:
+        condition: service_started
+
+  albert-api:
+    container_name: albert-api
+    build: ./local/Albert/api
+    command: uvicorn main:app --host 0.0.0.0 --port 80
+    environment:
+      - MQTT_BROKER=mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=public
+      - MQTT_PASSWORD=public
+    networks:
+      - bridge
+    ports:
+      - 80:80
+    depends_on:
+      mosquitto:
+        condition: service_started
 
   albert-gateway:
     container_name: albert-gateway
@@ -81,53 +136,6 @@ services:
         condition: service_started
       kafka:
         condition: service_healthy
-
-  save_microservice:
-    container_name: save_microservice
-    build: ./microservices/save_microservice
-    command: python3 ./save.py
-    environment:
-      - MQTT_BROKER=mosquitto
-      - MQTT_PORT=1883
-      - MQTT_USERNAME=public
-      - MQTT_PASSWORD=public
-    networks:
-      - bridge
-    depends_on:
-      kafka:
-        condition: service_healthy
-
-  clean_microservice:
-    container_name: clean_microservice
-    build: ./microservices/clean_microservice
-    command: python3 ./clean.py
-    environment:
-      - MQTT_BROKER=mosquitto
-      - MQTT_PORT=1883
-      - MQTT_USERNAME=public
-      - MQTT_PASSWORD=public
-    networks:
-      - bridge
-    depends_on:
-      kafka:
-        condition: service_healthy
-
-  actuate_microservice:
-    container_name: actuate_microservice
-    build: ./microservices/actuate_microservice
-    command: python3 ./actuate.py
-    environment:
-      - MQTT_BROKER=mosquitto
-      - MQTT_PORT=1883
-      - MQTT_USERNAME=public
-      - MQTT_PASSWORD=public
-    networks:
-      - bridge
-    depends_on:
-      kafka:
-        condition: service_healthy
-      mosquitto:
-        condition: service_started
 
   albert-heat-pump:
     container_name: albert-heat-pump
