@@ -81,10 +81,9 @@ def on_disconnect(client, userdata, rc):
 
 def subscribe_and_publish(mqtt_client, producer_kafka):
     def on_message(client, userdata, msg):
-        print(f"Received `{msg.payload.decode()}` from topic `{msg.topic}` in MQTT")
+        logging.info(f"Received `{msg.payload.decode()}` from topic `{msg.topic}` in MQTT")
         msg = json.loads(str(msg.payload.decode("utf-8")))
         msg["user"] = Config.USER_NAME
-        logging.info(f'Received MQTT message: {msg}')
         producer_kafka.send(kafka_topic, value=msg)
         logging.info(f'Sent Kafka message: {msg}')
 
@@ -118,6 +117,7 @@ def save(msg):
 
 
 def run():
+    global mqtt_client
     logging.basicConfig(format='%(asctime)s - %(levelname)s: %(message)s', level=logging.INFO)
     
     mqtt_client = connect_mqtt()

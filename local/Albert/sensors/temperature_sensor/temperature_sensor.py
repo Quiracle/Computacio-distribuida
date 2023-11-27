@@ -76,7 +76,7 @@ def publish(client):
 
             msg_dict = {
                 "timestamp": current_time,
-                "value": random.randint(12, 35),
+                "value": CURRENT_STATE,
                 "device": Config.DEVICE_NAME,
             }
             

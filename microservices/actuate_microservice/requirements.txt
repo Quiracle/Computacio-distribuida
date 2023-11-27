@@ -2,3 +2,4 @@ paho-mqtt
 kafka-python===2.0.2
 paho-mqtt
 pytz
+requests
