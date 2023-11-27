@@ -1,5 +1,6 @@
 from kafka import KafkaConsumer
-from influxdb_client import InfluxDBClient, WriteOptions  # Cambio en la importación
+from influxdb_client import InfluxDBClient, WritePrecision, Point  # Cambio en la importación
+from influxdb_client.client.write_api import SYNCHRONOUS
 import random
 import logging
 import json
@@ -9,6 +10,7 @@ db_hostname = 'influxdb'
 db_port = 8086
 db_token = 's2d3rf67ren42i0gg666er9'
 db_org = 'computacio'
+db_bucket = 'dades'
 
 broker_kafka = 'kafka:9092'
 topic_kafka = ["sensors-raw", "sensors-clean"]
@@ -30,42 +32,37 @@ def prepareDbClient():
         token=db_token,
         org=db_org,
     )
-    write_options = WriteOptions()
-    write_options.batch_size = 500
-    write_options.flush_interval = 10_000
-    write_options.flush_jitter = 1_000
-
-    twrite_api = client.write_api(write_options=write_options)
+    twrite_api = client.write_api(write_options=SYNCHRONOUS)
     return client, twrite_api
 
 
 
 def save_to_influxdb(influx_client, twrite_api, data):
-    json_body = [
-        {
-            "measurement": "your_measurement_name",
-            "fields": data,
-        }
-    ]
+    logging.info(f"Writing to InfluxDB: {data}")
 
-    # Utilizamos el método write del write_api
-    twrite_api.write(bucket=db_org, record=json_body)
+    try:
+        # p = Point("temperatura") \
+        #     .time(data['timestamp']) \
+        #     .field("value", data['value']) \
+        #     .tag("dispositive", data['dispositive']) \
+        #     .tag("user", data['user']) 
+        p = Point('temperatura').tag("User", data['user']).tag("dispositive", data['dispositive']).field("value", int(data['value'])).time(data['timestamp'], WritePrecision.MS)
+    
+        twrite_api.write(bucket=db_bucket, record=p)
+    except Exception as e:
+        logging.error(f"Error writing to InfluxDB: {e}")
+
+
 
 def subscribe(consumer_kafka, influx_client, twrite_api):
     consumer_kafka.subscribe(topic_kafka)
     logging.info("Subscribed to topic")
 
-    while True:
-        msg = consumer_kafka.poll(1.0)
+    for message in consumer_kafka:
+        data = message.value
+        logging.info(f"Consumed from topic: {data}")
 
-        if msg is None:
-            logging.info("No message received by consumer")
-        elif 'error' in msg:
-            logging.error(f"Received error from consumer {msg['error']}")
-        else:
-            data = msg.get('value', {})
-            logging.info(f"Received message from consumer {data}")
-            save_to_influxdb(influx_client, twrite_api, data)
+        save_to_influxdb(influx_client, twrite_api, data)
 
 def run():
     logging.basicConfig(format='%(asctime)s - %(levelname)s: %(message)s', level=logging.INFO)
