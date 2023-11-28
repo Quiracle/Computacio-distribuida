@@ -3,19 +3,17 @@ version: "3.7"
 services:
 
   influxdb:
-    container_name: influxdb
-    image: influxdb:latest
+    image: influxdb:1.8
     ports:
-      - "8086:8086"
-    environment:
-      - INFLUXDB_DB=influxdb
-      - INFLUXDB_ADMIN_USER=admin
-      - INFLUXDB_ADMIN_PASSWORD=pass
+      - '8086:8086'
     volumes:
-      - ./data:/var/lib/influxdb
+      - influxdb-storage:/mnt/shared/code/influxdb2
+    environment:
+      - INFLUXDB_DB=db0
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=Password1
     networks:
       - bridge
-  
   zookeeper:
     image: confluentinc/cp-zookeeper:5.4.1
     ports:
@@ -561,3 +559,6 @@ services:
 networks:
   bridge:
     driver: bridge
+
+volumes:
+  influxdb-storage: 

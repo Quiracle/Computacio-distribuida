@@ -14,7 +14,7 @@ async def actuate(device: str, value):
     global client
     msg = {
         "device": device,
-        "value": value
+        "value": int(value)
     }
     msg = json.dumps(msg)
     result = client.publish(Config.MQTT_TOPICS[device], msg)
