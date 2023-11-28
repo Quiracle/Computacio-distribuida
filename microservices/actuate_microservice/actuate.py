@@ -25,7 +25,11 @@ def connect_kafka_consumer():
         auto_offset_reset='latest',
         enable_auto_commit=True,
         group_id=kafka_group,
-        value_deserializer=lambda x: json.loads(x.decode('utf-8'))
+        value_deserializer=lambda x: json.loads(x.decode('utf-8')),
+        security_protocol='SASL_PLAINTEXT',
+        sasl_mechanism='PLAIN',
+        sasl_plain_username='admin',
+        sasl_plain_password='admin-secret',
     )
 
 def neededAction(msg):
@@ -58,6 +62,7 @@ def actuate(msg, client, mqtt_topic="actuators/heat_pump/action"):
         logging.error(f"Failed to send message to topic {mqtt_topic}")
 
 def run():
+    time.sleep(20)
     logging.basicConfig(format='%(asctime)s - %(levelname)s: %(message)s', level=logging.INFO)
 
     consumer_kafka = connect_kafka_consumer()
@@ -66,6 +71,6 @@ def run():
         logging.info(f"{message} is being processed")
         value, device = neededAction(message)
         if value is not None:
-            response = requests.post(f'{Config.USER_API_URL[message["user"]]}:80/actuate/{device}/{value}', {})
+            response = requests.post(f'{Config.USER_API_URL[message["user"]]}/actuate/{device}/{value}', {})
 if __name__ == '__main__':
     run()
