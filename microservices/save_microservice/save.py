@@ -45,10 +45,13 @@ def save(client, message):
     "fields": message
     }
     json_payload.append(data)
-
-    #Send our payload
-    client.write_points(json_payload)
-
+    try:
+        #Send our payload
+        client.write_points(json_payload)
+        logging.info(f"Data written to InfluxDB: {json_payload}")
+    except Exception as e:
+        logging.error(f"Failed writing to InfluxDB: {e}")
+    
 def run():
     time.sleep(20)
     logging.basicConfig(format='%(asctime)s - %(levelname)s: %(message)s', level=logging.INFO)

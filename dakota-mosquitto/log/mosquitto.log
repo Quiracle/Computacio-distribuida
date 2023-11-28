@@ -16734,3 +16734,107 @@ To fix this, use `chmod 0700 /mosquitto/config/mosquitto.passwd`.
 1701184039: Client python-mqtt-491 closed its connection.
 1701184045: mosquitto version 2.0.18 terminating
 1701184045: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1701184221: mosquitto version 2.0.18 starting
+1701184221: Config loaded from /mosquitto/config/mosquitto.conf.
+1701184221: Warning: File /mosquitto/config/mosquitto.passwd has world readable permissions. Future versions will refuse to load this file.
+To fix this, use `chmod 0700 /mosquitto/config/mosquitto.passwd`.
+1701184221: Opening ipv4 listen socket on port 1883.
+1701184221: mosquitto version 2.0.18 running
+1701184224: New connection from 172.27.0.24:38667 on port 1883.
+1701184224: New client connected from 172.27.0.24:38667 as python-mqtt-901 (p2, c1, k60, u'dakota').
+1701184224: New connection from 172.27.0.25:54391 on port 1883.
+1701184224: New client connected from 172.27.0.25:54391 as python-mqtt-142 (p2, c1, k60, u'dakota').
+1701184224: New connection from 172.27.0.26:59223 on port 1883.
+1701184224: New client connected from 172.27.0.26:59223 as python-mqtt-382 (p2, c1, k60, u'dakota').
+1701184224: New connection from 172.27.0.27:59921 on port 1883.
+1701184224: New client connected from 172.27.0.27:59921 as python-mqtt-83 (p2, c1, k60, u'dakota').
+1701184225: New connection from 172.27.0.28:54555 on port 1883.
+1701184225: New client connected from 172.27.0.28:54555 as python-mqtt-347 (p2, c1, k60, u'dakota').
+1701184245: New connection from 172.27.0.29:53659 on port 1883.
+1701184245: New client connected from 172.27.0.29:53659 as python-mqtt-48 (p2, c1, k60, u'dakota').
+1701184366: Client python-mqtt-382 closed its connection.
+1701184375: Client python-mqtt-347 closed its connection.
+1701184376: Client python-mqtt-48 closed its connection.
+1701184376: Client python-mqtt-83 closed its connection.
+1701184376: Client python-mqtt-142 closed its connection.
+1701184376: Client python-mqtt-901 closed its connection.
+1701184382: mosquitto version 2.0.18 terminating
+1701184382: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1701184393: mosquitto version 2.0.18 starting
+1701184393: Config loaded from /mosquitto/config/mosquitto.conf.
+1701184393: Warning: File /mosquitto/config/mosquitto.passwd has world readable permissions. Future versions will refuse to load this file.
+To fix this, use `chmod 0700 /mosquitto/config/mosquitto.passwd`.
+1701184393: Opening ipv4 listen socket on port 1883.
+1701184393: mosquitto version 2.0.18 running
+1701184394: New connection from 172.28.0.10:57165 on port 1883.
+1701184394: New client connected from 172.28.0.10:57165 as python-mqtt-574 (p2, c1, k60, u'dakota').
+1701184394: New connection from 172.28.0.9:32967 on port 1883.
+1701184394: New client connected from 172.28.0.9:32967 as python-mqtt-456 (p2, c1, k60, u'dakota').
+1701184394: New connection from 172.28.0.11:40317 on port 1883.
+1701184394: New client connected from 172.28.0.11:40317 as python-mqtt-410 (p2, c1, k60, u'dakota').
+1701184395: New connection from 172.28.0.13:60049 on port 1883.
+1701184395: New connection from 172.28.0.12:48987 on port 1883.
+1701184395: New client connected from 172.28.0.13:60049 as python-mqtt-702 (p2, c1, k60, u'dakota').
+1701184395: New client connected from 172.28.0.12:48987 as python-mqtt-275 (p2, c1, k60, u'dakota').
+1701184418: New connection from 172.28.0.33:35455 on port 1883.
+1701184418: New client connected from 172.28.0.33:35455 as python-mqtt-733 (p2, c1, k60, u'dakota').
+1701184620: Client python-mqtt-702 closed its connection.
+1701184630: Client python-mqtt-456 closed its connection.
+1701184630: Client python-mqtt-410 closed its connection.
+1701184630: Client python-mqtt-275 closed its connection.
+1701184630: Client python-mqtt-733 closed its connection.
+1701184630: Client python-mqtt-574 closed its connection.
+1701184635: mosquitto version 2.0.18 terminating
+1701184635: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1701184696: mosquitto version 2.0.18 starting
+1701184696: Config loaded from /mosquitto/config/mosquitto.conf.
+1701184696: Warning: File /mosquitto/config/mosquitto.passwd has world readable permissions. Future versions will refuse to load this file.
+To fix this, use `chmod 0700 /mosquitto/config/mosquitto.passwd`.
+1701184696: Opening ipv4 listen socket on port 1883.
+1701184696: mosquitto version 2.0.18 running
+1701184699: New connection from 172.29.0.21:55157 on port 1883.
+1701184699: New client connected from 172.29.0.21:55157 as python-mqtt-860 (p2, c1, k60, u'dakota').
+1701184700: New connection from 172.29.0.24:42991 on port 1883.
+1701184700: New client connected from 172.29.0.24:42991 as python-mqtt-841 (p2, c1, k60, u'dakota').
+1701184700: New connection from 172.29.0.25:42811 on port 1883.
+1701184700: New client connected from 172.29.0.25:42811 as python-mqtt-603 (p2, c1, k60, u'dakota').
+1701184700: New connection from 172.29.0.26:52989 on port 1883.
+1701184700: New client connected from 172.29.0.26:52989 as python-mqtt-835 (p2, c1, k60, u'dakota').
+1701184701: New connection from 172.29.0.27:60595 on port 1883.
+1701184701: New client connected from 172.29.0.27:60595 as python-mqtt-8 (p2, c1, k60, u'dakota').
+1701184722: New connection from 172.29.0.33:52907 on port 1883.
+1701184722: New client connected from 172.29.0.33:52907 as python-mqtt-382 (p2, c1, k60, u'dakota').
+1701185249: Client python-mqtt-8 closed its connection.
+1701185259: Client python-mqtt-860 closed its connection.
+1701185259: Client python-mqtt-841 closed its connection.
+1701185259: Client python-mqtt-835 closed its connection.
+1701185259: Client python-mqtt-382 closed its connection.
+1701185259: Client python-mqtt-603 closed its connection.
+1701185266: mosquitto version 2.0.18 terminating
+1701185266: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1701185282: mosquitto version 2.0.18 starting
+1701185282: Config loaded from /mosquitto/config/mosquitto.conf.
+1701185282: Warning: File /mosquitto/config/mosquitto.passwd has world readable permissions. Future versions will refuse to load this file.
+To fix this, use `chmod 0700 /mosquitto/config/mosquitto.passwd`.
+1701185282: Opening ipv4 listen socket on port 1883.
+1701185282: mosquitto version 2.0.18 running
+1701185285: New connection from 172.30.0.20:48707 on port 1883.
+1701185285: New client connected from 172.30.0.20:48707 as python-mqtt-865 (p2, c1, k60, u'dakota').
+1701185285: New connection from 172.30.0.23:50159 on port 1883.
+1701185285: New client connected from 172.30.0.23:50159 as python-mqtt-225 (p2, c1, k60, u'dakota').
+1701185286: New connection from 172.30.0.25:38591 on port 1883.
+1701185286: New client connected from 172.30.0.25:38591 as python-mqtt-919 (p2, c1, k60, u'dakota').
+1701185286: New connection from 172.30.0.28:36557 on port 1883.
+1701185286: New client connected from 172.30.0.28:36557 as python-mqtt-302 (p2, c1, k60, u'dakota').
+1701185286: New connection from 172.30.0.27:59127 on port 1883.
+1701185286: New client connected from 172.30.0.27:59127 as python-mqtt-635 (p2, c1, k60, u'dakota').
+1701185307: New connection from 172.30.0.33:57737 on port 1883.
+1701185307: New client connected from 172.30.0.33:57737 as python-mqtt-803 (p2, c1, k60, u'dakota').
+1701185612: Client python-mqtt-635 closed its connection.
+1701185622: Client python-mqtt-302 closed its connection.
+1701185622: Client python-mqtt-225 closed its connection.
+1701185622: Client python-mqtt-865 closed its connection.
+1701185622: Client python-mqtt-919 closed its connection.
+1701185622: Client python-mqtt-803 closed its connection.
+1701185628: mosquitto version 2.0.18 terminating
+1701185628: Saving in-memory database to /mosquitto/data//mosquitto.db.

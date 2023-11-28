@@ -96,30 +96,6 @@ def subscribe_and_publish(mqtt_client, producer_kafka):
         logging.info(f'Subscribed to topic {topic}')
     mqtt_client.on_message = on_message
 
-def save(msg):
-    logging.info("Saving sensor data...")
-    # sql = """INSERT INTO traffic
-    #          VALUES(%s, %s, %s, %s, %s, %s, %s);"""
-    # conn = None
-    # try:
-    #     # connect to the PostgreSQL database
-    #     conn = psycopg2.connect(dbname="postgres", user="postgres", password="postgres", host="db")
-    #     # create a new cursor
-    #     cur = conn.cursor()
-    #     # execute the INSERT statement
-    #     cur.execute(sql, (msg['vehicle_id'], msg['vehicle_type'], msg['street_event'], msg['street_id'], msg['camera_id'], 'pending', msg['time']))
-    #     # commit the changes to the database
-    #     conn.commit()
-    #     print("Successfully saved sensor data") 
-    #     # close communication with the database
-    #     cur.close()
-    # except (Exception, psycopg2.DatabaseError) as error:
-    #     print(error)
-    # finally:
-    #     if conn is not None:
-    #         conn.close()
-
-
 def run():
     global mqtt_client
     time.sleep(20)
