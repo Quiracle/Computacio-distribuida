@@ -2,19 +2,6 @@ version: "3.7"
 
 services:
 
-  mosquitto:
-    image: eclipse-mosquitto:latest
-    ports:
-      - 1883:1883
-      - 8883:8883
-      - 9001:9001
-    volumes:
-      - ./mosquitto/config:/mosquitto/config
-      - ./mosquitto/data:/mosquitto/data
-      - ./mosquitto/log:/mosquitto/log
-    networks:
-      - bridge
-
   influxdb:
     container_name: influxdb
     image: influxdb:latest
@@ -30,32 +17,68 @@ services:
       - bridge
   
   zookeeper:
-    image: docker.io/bitnami/zookeeper:latest
+    image: confluentinc/cp-zookeeper:5.4.1
     ports:
-      - "2181:2181"
+      - '31000:31000'
     environment:
-      - ALLOW_ANONYMOUS_LOGIN=yes
-    healthcheck:
-      test: nc -z zookeeper 2181 || exit -1
-      interval: 2s
-      timeout: 25s
-      retries: 15
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      KAFKA_OPTS: "-Dzookeeper.authProvider.1=org.apache.zookeeper.server.auth.SASLAuthenticationProvider -Djava.security.auth.login.config=/opt/security/zookeeper-server.jaas"
+      KAFKA_JMX_HOSTNAME: "localhost"
+      KAFKA_JMX_PORT: 31000
+    volumes:
+      - ./security:/opt/security
     networks:
       - bridge
+
   kafka:
-    image: docker.io/bitnami/kafka:3.6.0
+    image: confluentinc/cp-server:5.4.1
     ports:
-      - "9092:9092"
-    environment:
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
-      - ALLOW_PLAINTEXT_LISTENER=yes
-      - ALLOW_ANONYMOUS_LOGIN=yes
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - '9092:9092'
+      - '9093:9093'
+      - '31001:31001'
     depends_on:
-      zookeeper: 
-        condition: service_healthy
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_INTER_BROKER_LISTENER_NAME: EXTERNAL
+      KAFKA_LISTENERS: "EXTERNAL://kafka:9092,INTERNAL://localhost:9093"
+      KAFKA_ADVERTISED_LISTENERS: "EXTERNAL://kafka:9092,INTERNAL://localhost:9093"
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "EXTERNAL:SASL_PLAINTEXT,INTERNAL:SASL_PLAINTEXT"
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 100
+#      KAFKA_SASL_ENABLED_MECHANISMS: PLAIN
+      KAFKA_LISTENER_NAME_EXTERNAL_SASL_ENABLED_MECHANISMS: PLAIN
+      KAFKA_LISTENER_NAME_INTERNAL_SASL_ENABLED_MECHANISMS: PLAIN
+#      KAFKA_LISTENER_NAME_EXTERNAL_PLAIN_SASL_JAAS_CONFIG: "KafkaServer {org.apache.kafka.common.security.plain.PlainLoginModule required username='admin' password='admin-secret' user_admin='admin-secret';} KafkaClient {org.apache.kafka.common.security.plain.PlainLoginModule required username='admin' password='admin-secret';};"
+#      KAFKA_LISTENER_NAME_INTERNAL_PLAIN_SASL_JAAS_CONFIG: "KafkaServer {org.apache.kafka.common.security.plain.PlainLoginModule required username='admin' password='admin-secret' user_admin='admin-secret';} KafkaClient {org.apache.kafka.common.security.plain.PlainLoginModule required username='admin' password='admin-secret';};"
+#      KAFKA_ZOOKEEPER_SASL_CLIENTCONFIG: "org.apache.zookeeper.server.auth.DigestLoginModule required username='admin' password='admin-secret';};"
+
+      KAFKA_SASL_MECHANISM_INTER_BROKER_PROTOCOL: PLAIN
+      KAFKA_AUTHORIZER_CLASS_NAME: kafka.security.auth.SimpleAclAuthorizer
+#      KAFKA_AUTHORIZER_CLASS_NAME: io.confluent.kafka.security.authorizer.ConfluentServerAuthorizer
+#      KAFKA_CONFLUENT_AUTHORIZER_ACCESS_RULE_PROVIDERS: "ZK_ACL,CONFLUENT"
+      KAFKA_SUPER_USERS: "User:admin"
+      KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "false"
+      KAFKA_ZOOKEEPER_SET_ACL: "true"
+      KAFKA_OPTS: "-Djava.security.auth.login.config=/opt/security/kafka-server.jaas"
+      KAFKA_JMX_HOSTNAME: "localhost"
+      KAFKA_JMX_PORT: 31001
+      KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
+      CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: localhost:9093
+      CONFLUENT_METRICS_REPORTER_ZOOKEEPER_CONNECT: zookeeper:2181
+      CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 1
+      CONFLUENT_METRICS_REPORTER_SECURITY_PROTOCOL: SASL_PLAINTEXT
+      CONFLUENT_METRICS_REPORTER_SASL_MECHANISM: PLAIN
+      CONFLUENT_METRICS_REPORTER_SASL_JAAS_CONFIG: "org.apache.kafka.common.security.plain.PlainLoginModule required username='admin' password='admin-secret';"
+
+      KAFKA_CONFLUENT_LICENSE_TOPIC_REPLICATION_FACTOR: 1
+    volumes:
+      - ./security:/opt/security
     healthcheck:
-      test: kafka-topics.sh --bootstrap-server kafka:9092 --list || exit -1
+      test: kafka-topics.sh --bootstrap-server kafka:9092 --list --command-config config.properties || exit -1
       interval: 2s
       timeout: 25s
       retries: 15
@@ -72,7 +95,7 @@ services:
       - bridge
     depends_on:
       kafka:
-        condition: service_healthy
+        condition: service_started
 
   clean_microservice:
     container_name: clean_microservice
@@ -84,30 +107,43 @@ services:
       - bridge
     depends_on:
       kafka:
-        condition: service_healthy
+        condition: service_started
 
   actuate_microservice:
     container_name: actuate_microservice
     build: ./microservices/actuate_microservice
     command: python3 ./actuate.py
     environment:
-      - MQTT_USERNAME=albert
+      - MQTT_USERNAME=tifany
       - MQTT_PASSWORD=contrasenyasupersecreta
       - KAFKA_BROKER=kafka:9092
     networks:
       - bridge
     depends_on:
       kafka:
-        condition: service_healthy
-      mosquitto:
+        condition: service_started
+      albert-mosquitto:
         condition: service_started
 
+  albert-mosquitto:
+    image: eclipse-mosquitto:latest
+    ports:
+      - 1883:1883
+      - 8883:8883
+      - 9001:9001
+    volumes:
+      - ./albert-mosquitto/config:/mosquitto/config
+      - ./albert-mosquitto/data:/mosquitto/data
+      - ./albert-mosquitto/log:/mosquitto/log
+    networks:
+      - bridge
+      
   albert-api:
     container_name: albert-api
     build: ./local/Albert/api
     command: uvicorn main:app --host 0.0.0.0 --port 80
     environment:
-      - MQTT_BROKER=mosquitto
+      - MQTT_BROKER=albert-mosquitto
       - MQTT_PORT=1883
       - MQTT_USERNAME=albert
       - MQTT_PASSWORD=contrasenyasupersecreta
@@ -116,7 +152,7 @@ services:
     ports:
       - 80:80
     depends_on:
-      mosquitto:
+      albert-mosquitto:
         condition: service_started
 
   albert-gateway:
@@ -124,7 +160,7 @@ services:
     build: ./local/Albert/gateway
     command: python3 ./gateway.py
     environment:
-      - MQTT_BROKER=mosquitto
+      - MQTT_BROKER=albert-mosquitto
       - MQTT_PORT=1883
       - MQTT_USERNAME=albert
       - MQTT_PASSWORD=contrasenyasupersecreta
@@ -132,24 +168,24 @@ services:
     networks:
       - bridge
     depends_on:
-      mosquitto:
+      albert-mosquitto:
         condition: service_started
       kafka:
-        condition: service_healthy
+        condition: service_started
 
   albert-heat-pump:
     container_name: albert-heat-pump
     build: ./local/Albert/sensors/heat_pump
     command: python3 ./heat_pump.py
     environment:
-      - MQTT_BROKER=mosquitto
+      - MQTT_BROKER=albert-mosquitto
       - MQTT_PORT=1883
       - MQTT_USERNAME=albert
       - MQTT_PASSWORD=contrasenyasupersecreta
     networks:
       - bridge
     depends_on:
-      mosquitto:
+      albert-mosquitto:
         condition: service_started
 
   albert-light-bulb:
@@ -157,14 +193,14 @@ services:
     build: ./local/Albert/sensors/light_bulb
     command: python3 ./light_bulb.py
     environment:
-      - MQTT_BROKER=mosquitto
+      - MQTT_BROKER=albert-mosquitto
       - MQTT_PORT=1883
       - MQTT_USERNAME=albert
       - MQTT_PASSWORD=contrasenyasupersecreta
     networks:
       - bridge
     depends_on:
-      mosquitto:
+      albert-mosquitto:
         condition: service_started
 
   albert-presence-sensor:
@@ -172,14 +208,14 @@ services:
     build: ./local/Albert/sensors/presence_sensor
     command: python3 ./presence_sensor.py
     environment:
-      - MQTT_BROKER=mosquitto
+      - MQTT_BROKER=albert-mosquitto
       - MQTT_PORT=1883
       - MQTT_USERNAME=albert
       - MQTT_PASSWORD=contrasenyasupersecreta
     networks:
       - bridge
     depends_on:
-      mosquitto:
+      albert-mosquitto:
         condition: service_started
 
   albert-temperature-sensor:
@@ -187,14 +223,339 @@ services:
     build: ./local/Albert/sensors/temperature_sensor
     command: python3 ./temperature_sensor.py
     environment:
-      - MQTT_BROKER=mosquitto
+      - MQTT_BROKER=albert-mosquitto
       - MQTT_PORT=1883
       - MQTT_USERNAME=albert
       - MQTT_PASSWORD=contrasenyasupersecreta
     networks:
       - bridge
     depends_on:
-      mosquitto:
+      albert-mosquitto:
+        condition: service_started
+
+  tifany-mosquitto:
+    image: eclipse-mosquitto:latest
+    ports:
+      - 1884:1883
+      - 8884:8883
+      - 9002:9001
+    volumes:
+      - ./tifany-mosquitto/config:/mosquitto/config
+      - ./tifany-mosquitto/data:/mosquitto/data
+      - ./tifany-mosquitto/log:/mosquitto/log
+    networks:
+      - bridge
+      
+  tifany-api:
+    container_name: tifany-api
+    build: ./local/Tifany/api
+    command: uvicorn main:app --host 0.0.0.0 --port 81
+    environment:
+      - MQTT_BROKER=tifany-mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=tifany
+      - MQTT_PASSWORD=miau
+    networks:
+      - bridge
+    ports:
+      - 81:81
+    depends_on:
+      tifany-mosquitto:
+        condition: service_started
+
+  tifany-gateway:
+    container_name: tifany-gateway
+    build: ./local/Tifany/gateway
+    command: python3 ./gateway.py
+    environment:
+      - MQTT_BROKER=tifany-mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=tifany
+      - MQTT_PASSWORD=miau
+      - KAFKA_BROKER=kafka:9092
+    networks:
+      - bridge
+    depends_on:
+      tifany-mosquitto:
+        condition: service_started
+      kafka:
+        condition: service_started
+
+  tifany-heat-pump:
+    container_name: tifany-heat-pump
+    build: ./local/Tifany/sensors/heat_pump
+    command: python3 ./heat_pump.py
+    environment:
+      - MQTT_BROKER=tifany-mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=tifany
+      - MQTT_PASSWORD=miau
+    networks:
+      - bridge
+    depends_on:
+      tifany-mosquitto:
+        condition: service_started
+
+  tifany-light-bulb:
+    container_name: tifany-light-bulb
+    build: ./local/Tifany/sensors/light_bulb
+    command: python3 ./light_bulb.py
+    environment:
+      - MQTT_BROKER=tifany-mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=tifany
+      - MQTT_PASSWORD=miau
+    networks:
+      - bridge
+    depends_on:
+      tifany-mosquitto:
+        condition: service_started
+
+  tifany-presence-sensor:
+    container_name: tifany-presence-sensor
+    build: ./local/Tifany/sensors/presence_sensor
+    command: python3 ./presence_sensor.py
+    environment:
+      - MQTT_BROKER=tifany-mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=tifany
+      - MQTT_PASSWORD=miau
+    networks:
+      - bridge
+    depends_on:
+      tifany-mosquitto:
+        condition: service_started
+
+  tifany-temperature-sensor:
+    container_name: tifany-temperature-sensor
+    build: ./local/Tifany/sensors/temperature_sensor
+    command: python3 ./temperature_sensor.py
+    environment:
+      - MQTT_BROKER=tifany-mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=tifany
+      - MQTT_PASSWORD=miau
+    networks:
+      - bridge
+    depends_on:
+      tifany-mosquitto:
+        condition: service_started
+
+  dakota-mosquitto:
+    image: eclipse-mosquitto:latest
+    ports:
+      - 1885:1883
+      - 8885:8883
+      - 9003:9001
+    volumes:
+      - ./dakota-mosquitto/config:/mosquitto/config
+      - ./dakota-mosquitto/data:/mosquitto/data
+      - ./dakota-mosquitto/log:/mosquitto/log
+    networks:
+      - bridge
+      
+  dakota-api:
+    container_name: dakota-api
+    build: ./local/Dakota/api
+    command: uvicorn main:app --host 0.0.0.0 --port 82
+    environment:
+      - MQTT_BROKER=dakota-mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=dakota
+      - MQTT_PASSWORD=oleole
+    networks:
+      - bridge
+    ports:
+      - 82:82
+    depends_on:
+      dakota-mosquitto:
+        condition: service_started
+
+  dakota-gateway:
+    container_name: dakota-gateway
+    build: ./local/Dakota/gateway
+    command: python3 ./gateway.py
+    environment:
+      - MQTT_BROKER=dakota-mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=dakota
+      - MQTT_PASSWORD=oleole
+      - KAFKA_BROKER=kafka:9092
+    networks:
+      - bridge
+    depends_on:
+      dakota-mosquitto:
+        condition: service_started
+      kafka:
+        condition: service_started
+
+  dakota-heat-pump:
+    container_name: dakota-heat-pump
+    build: ./local/Dakota/sensors/heat_pump
+    command: python3 ./heat_pump.py
+    environment:
+      - MQTT_BROKER=dakota-mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=dakota
+      - MQTT_PASSWORD=oleole
+    networks:
+      - bridge
+    depends_on:
+      dakota-mosquitto:
+        condition: service_started
+
+  dakota-light-bulb:
+    container_name: dakota-light-bulb
+    build: ./local/Dakota/sensors/light_bulb
+    command: python3 ./light_bulb.py
+    environment:
+      - MQTT_BROKER=dakota-mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=dakota
+      - MQTT_PASSWORD=oleole
+    networks:
+      - bridge
+    depends_on:
+      dakota-mosquitto:
+        condition: service_started
+
+  dakota-presence-sensor:
+    container_name: dakota-presence-sensor
+    build: ./local/Dakota/sensors/presence_sensor
+    command: python3 ./presence_sensor.py
+    environment:
+      - MQTT_BROKER=dakota-mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=dakota
+      - MQTT_PASSWORD=oleole
+    networks:
+      - bridge
+    depends_on:
+      dakota-mosquitto:
+        condition: service_started
+
+  dakota-temperature-sensor:
+    container_name: dakota-temperature-sensor
+    build: ./local/Dakota/sensors/temperature_sensor
+    command: python3 ./temperature_sensor.py
+    environment:
+      - MQTT_BROKER=dakota-mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=dakota
+      - MQTT_PASSWORD=oleole
+    networks:
+      - bridge
+    depends_on:
+      dakota-mosquitto:
+        condition: service_started
+
+
+  tommy-mosquitto:
+    image: eclipse-mosquitto:latest
+    ports:
+      - 1886:1883
+      - 8886:8883
+      - 9004:9001
+    volumes:
+      - ./tommy-mosquitto/config:/mosquitto/config
+      - ./tommy-mosquitto/data:/mosquitto/data
+      - ./tommy-mosquitto/log:/mosquitto/log
+    networks:
+      - bridge
+      
+  tommy-api:
+    container_name: tommy-api
+    build: ./local/Tommy/api
+    command: uvicorn main:app --host 0.0.0.0 --port 83
+    environment:
+      - MQTT_BROKER=tommy-mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=tommy
+      - MQTT_PASSWORD=jahotenim
+    networks:
+      - bridge
+    ports:
+      - 83:83
+    depends_on:
+      tommy-mosquitto:
+        condition: service_started
+
+  tommy-gateway:
+    container_name: tommy-gateway
+    build: ./local/Tommy/gateway
+    command: python3 ./gateway.py
+    environment:
+      - MQTT_BROKER=tommy-mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=tommy
+      - MQTT_PASSWORD=jahotenim
+      - KAFKA_BROKER=kafka:9092
+    networks:
+      - bridge
+    depends_on:
+      tommy-mosquitto:
+        condition: service_started
+      kafka:
+        condition: service_started
+
+  tommy-heat-pump:
+    container_name: tommy-heat-pump
+    build: ./local/Tommy/sensors/heat_pump
+    command: python3 ./heat_pump.py
+    environment:
+      - MQTT_BROKER=tommy-mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=tommy
+      - MQTT_PASSWORD=jahotenim
+    networks:
+      - bridge
+    depends_on:
+      tommy-mosquitto:
+        condition: service_started
+
+  tommy-light-bulb:
+    container_name: tommy-light-bulb
+    build: ./local/Tommy/sensors/light_bulb
+    command: python3 ./light_bulb.py
+    environment:
+      - MQTT_BROKER=tommy-mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=tommy
+      - MQTT_PASSWORD=jahotenim
+    networks:
+      - bridge
+    depends_on:
+      tommy-mosquitto:
+        condition: service_started
+
+  tommy-presence-sensor:
+    container_name: tommy-presence-sensor
+    build: ./local/Tommy/sensors/presence_sensor
+    command: python3 ./presence_sensor.py
+    environment:
+      - MQTT_BROKER=tommy-mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=tommy
+      - MQTT_PASSWORD=jahotenim
+    networks:
+      - bridge
+    depends_on:
+      tommy-mosquitto:
+        condition: service_started
+
+  tommy-temperature-sensor:
+    container_name: tommy-temperature-sensor
+    build: ./local/Tommy/sensors/temperature_sensor
+    command: python3 ./temperature_sensor.py
+    environment:
+      - MQTT_BROKER=tommy-mosquitto
+      - MQTT_PORT=1883
+      - MQTT_USERNAME=tommy
+      - MQTT_PASSWORD=jahotenim
+    networks:
+      - bridge
+    depends_on:
+      tommy-mosquitto:
         condition: service_started
 
 networks:
